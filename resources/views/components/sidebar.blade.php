@@ -2,7 +2,7 @@
     $menus = [
         (object) [
             'title' => 'Dashboard',
-            'path' => '/',
+            'path' => 'dashboard',
             'icon' => 'fas fa-home',
         ],
         (object) [
@@ -23,17 +23,19 @@
         (object) [
             'title' => 'KRS',
             'path' => 'krs',
-            'icon' => 'fas fa-file-alt'
-        ]
+            'icon' => 'fas fa-file-alt',
+        ],
     ];
 @endphp
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="templates/index3.html" class="brand-link">
-        <img src="templates/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-            style="opacity: .8">
-        <span class="brand-text font-weight-light">KRS an</span>
+    <a href="/" class="brand-link" style="display: flex; align-items: center; ">
+        <img src="templates/dist/img/Logo_pnc.png" alt="KRS PNC" class="brand-image img-circle"
+            style="width: 40px; height: 40px; object-fit: cover; opacity: 1;">
+        <span class="brand-text font-weight-light" style="font-size: 16px; font-weight: 600; color: white;">
+            KRS PNC
+        </span>
     </a>
 
     <!-- Sidebar -->
@@ -41,12 +43,14 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="templates/dist/img/icon1.JPG" class="img-circle elevation-2" alt="User Image">
+                <img src="templates/dist/img/icon1.JPG" class="img-circle elevation-2" alt="User Image"
+                    style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Sugeng Young Lex</a>
+                <span class="d-block" style="font-weight: 600; font-size: 16px; color:white">Alfito Dwi Aditya</span>
             </div>
         </div>
+
 
         <!-- SidebarSearch Form -->
         <div class="form-inline">
@@ -77,7 +81,7 @@
                     </li>
                 @endforeach
 
-                
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

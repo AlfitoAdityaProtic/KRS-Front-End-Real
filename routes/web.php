@@ -25,11 +25,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 // });
 
 // ROUTES LOGIN START
-Route::get('login',[LoginController::class, 'index']);
+Route::get('/',[LoginController::class, 'index']);
 // ROUTES LOGIN END
 
 // ROUTES DASHBOARD START
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('dashboard', [DashboardController::class, 'index']);
 // ROUTES DASHBOARD END
 
 // ROUTES PRODI START

@@ -2,7 +2,7 @@
     $login = [
         (object) [
             'title' => 'Log Out',
-            'path' => 'login',
+            'path' => '/',
             'icon' => 'fas fa-door-open',
         ],
     ];

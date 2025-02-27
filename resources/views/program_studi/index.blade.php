@@ -24,7 +24,10 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="prodi/create" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Tambah Prodi</a>
+                    <a href="prodi/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah Prodi</a>
+                    <a href="#" class="btn btn-danger mb-3 float-right mr-3 shadow"><i class="fas fa-download"></i>PDF</a>
+                    <a href="#" class="btn btn-secondary mb-3 float-right mr-3 shadow"><i class="fas fa-file-download"></i>Excel</a>
+                    
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped text-center" id="produkTable">
                             <thead class="table-dark">

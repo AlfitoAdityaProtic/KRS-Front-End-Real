@@ -19,7 +19,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('mahasiswa.create');
     }
 
     /**
@@ -41,9 +41,9 @@ class MahasiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        return view('mahasiswa.edit');
     }
 
     /**

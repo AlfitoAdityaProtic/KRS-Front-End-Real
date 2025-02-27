@@ -3,85 +3,117 @@
 @section('header')
     <div class="row mb-3">
         <div class="col-sm-6">
-            <h1 class="fw-bold text-white">Mahasiswa</h1>
+            <h1 class="fw-bold" style="color: #333;">Mahasiswa</h1>
         </div>
     </div>
 @endsection
 
 @section('content')
-<div class="row">
-        <div class="col-lg-8 mx-auto">
-            <div class="card shadow">
-                <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="card shadow" style="border-radius: 10px; overflow: hidden;">
+                <div class="card-header d-flex justify-content-between align-items-center"
+                    style="border-radius: 10px 10px 0 0;">
                     <h5 class="m-0">Daftar Mahasiswa</h5>
-                    <!-- Input Pencarian -->
-                    <div class="input-group" style="width: 250px;">
+                    <div class="input-group" style="width: 300px;">
                         <input type="text" id="searchInput" class="form-control form-control-sm"
-                            placeholder="Cari program studi...">
-                        <button class="btn btn-outline-secondary btn-sm" type="button" id="searchButton">
+                            placeholder="Cari program studi..." style="border-radius: 5px;">
+                        <button class="btn btn-light btn-sm" type="button" id="searchButton">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
                 </div>
-                <div class="card-body">
-                    <a href="prodi/create" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Tambah Mahasiswa</a>
+                <div class="card-body" style="background: #f8f9fa; padding: 20px;">
+                    <a href="mahasiswa/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah
+                        Mahasiswa
+                    </a>
+                    <a href="#" class="btn btn-danger mb-3 float-right mr-3 shadow"><i
+                            class="fas fa-download"></i>PDF</a>
+                    <a href="#" class="btn btn-secondary mb-3 float-right mr-3 shadow"><i
+                            class="fas fa-file-download"></i>Excel</a>
+
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped text-center" id="produkTable">
-                            <thead class="table-dark">
+                        <table class="table table-bordered table-striped text-center" id="produkTable"
+                            style="border-radius: 10px; overflow: hidden;">
+                            <thead style="background: #343a40; color: white;">
                                 <tr>
                                     <th>No</th>
-                                    <th>ID Prodi</th>
-                                    <th>Nama Prodi</th>
+                                    <th>NPM</th>
+                                    <th>Nama Mahasiswa</th>
+                                    <th>Alamat Mahasiswa</th>
+                                    <th>Nama Program Studi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($produks as $item) --}}
                                 <tr>
                                     <td>1</td>
-                                    <td>1898900</td>
+                                    <td>230202002</td>
+                                    <td>Alfito</td>
+                                    <td>Jalan Jalan</td>
                                     <td>Teknik Informatika</td>
                                     <td>
-                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
-                                                class="fas fa-edit"></i>Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
-                                            Delete</a>
+                                        <a href="mahasiswa/edit" class="btn btn-success btn-sm"
+                                            style="border-radius: 5px; padding: 5px 10px;">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-sm"
+                                            style="border-radius: 5px; padding: 5px 10px;">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>123</td>
-                                    <td>Teknik Elektro</td>
+                                    <td>230202003</td>
+                                    <td>Alis</td>
+                                    <td>Jalan Manunggal</td>
+                                    <td>Teknik Informatika</td>
                                     <td>
-                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
-                                                class="fas fa-edit"></i>Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
-                                            Delete</a>
+                                        <a href="mahasiswa/edit" class="btn btn-success btn-sm"
+                                            style="border-radius: 5px; padding: 5px 10px;">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-sm"
+                                            style="border-radius: 5px; padding: 5px 10px;">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
-                                    <td>77777</td>
-                                    <td>Teknik Mesin</td>
+                                    <td>230202004</td>
+                                    <td>Azka</td>
+                                    <td>Jalan Bogowonto</td>
+                                    <td>Teknik Informatika</td>
                                     <td>
-                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
-                                                class="fas fa-edit"></i>Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
-                                            Delete</a>
+                                        <a href="mahasiswa/edit" class="btn btn-success btn-sm"
+                                            style="border-radius: 5px; padding: 5px 10px;">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-sm"
+                                            style="border-radius: 5px; padding: 5px 10px;">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
-                                    <td>6666</td>
-                                    <td>Teknik rpl</td>
+                                    <td>230202005</td>
+                                    <td>Bikra</td>
+                                    <td>Jalan Kalimas</td>
+                                    <td>Teknik Informatika</td>
                                     <td>
-                                        <a href="edit" class="btn btn-success btn-sm"><i
-                                                class="fas fa-edit"></i>Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
-                                            Delete</a>
+                                        <a href="mahasiswa/edit" class="btn btn-success btn-sm"
+                                            style="border-radius: 5px; padding: 5px 10px;">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-sm"
+                                            style="border-radius: 5px; padding: 5px 10px;">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </a>
                                     </td>
                                 </tr>
-                                {{-- @endforeach --}}
                             </tbody>
                         </table>
                     </div>
@@ -90,7 +122,6 @@
         </div>
     </div>
 
-    <!-- Script untuk Pencarian -->
     <script>
         document.getElementById('searchButton').addEventListener('click', function() {
             const searchText = document.getElementById('searchInput').value.toLowerCase();
