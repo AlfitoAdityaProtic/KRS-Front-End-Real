@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ProdiController extends Controller
 {
@@ -12,12 +13,12 @@ class ProdiController extends Controller
      */
     public function index()
     {
-        // $client = new Client();
-        // $url = 'http://127.0.0.1:8080';
-        // $response = $client->request('GET', $url);
-        // $content = $response->getbody()->getContents();
-        // $contentArray = json_decode($content,true); 
-        return view('program_studi.index');
+        $response = Http::get('http://localhost:8080/api/prodi');
+        if ($response->successful()) {
+            $datas = $response->json();
+            return view('program_studi.index', compact('datas'));
+        }
+        return response()->json(['error' => 'Gagal Mengambil Data dari API'], 500);
     }
 
     /**
@@ -33,11 +34,17 @@ class ProdiController extends Controller
      */
     public function store(Request $request)
     {
-        $_SESSION['flash_message'] = [
-            'pesan' => 'Data Program Studi Berhasil Ditambahkan',
-            'type' => 'success'
-        ];
-        return view('program_studi.index');
+        $request->validate([
+            'nama_prodi' => 'required|string|max:255',
+        ]);
+        $response = Http::post('http://localhost:8080/api/prodi', [
+            'nama_prodi' => $request->nama_prodi,
+        ]);
+        if ($response->successful()) {
+            return redirect()->route('prodi.index')->with('success', 'Data Berhasil Ditambahkan!');
+        }
+
+        return back()->with('error', 'Gagal Menambahkan data');
     }
 
     /**
@@ -51,9 +58,15 @@ class ProdiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(string $id)
     {
-        return view('program_studi.edit');
+        $response = Http::get('http://localhost:8080/api/prodi/' . $id);
+
+        if ($response->successful()){
+            $data = $response->json();
+            return view('program_studi.edit', ['prodi'=> $data['prodi_byid']]);
+        }
+        return response()->json(['error' => 'gagal Fetch data'],500);
     }
 
     /**
@@ -61,7 +74,17 @@ class ProdiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_prodi' => 'required|string|max:255',
+        ]);
+        $response = Http::put('http://localhost:8080/api/prodi/'. $id,[
+            'nama_prodi' => $request->nama_prodi,
+        ]);
+
+        if ($response->successful()){
+            return redirect()->route('prodi.index')->with('success', 'Data Berhasil di update');
+        }
+        return back()->with('error', 'Gagal Menambahkan data');
     }
 
     /**
@@ -69,6 +92,11 @@ class ProdiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $response = Http::delete('http://localhost:8080/api/prodi/' . $id);
+
+        if ($response->successful()) {
+            return redirect()->route('prodi.index')->with('success', 'Data berhasil dihapus');
+        }
+        return back()->with('error', 'Gagal Menghapus data');
     }
 }

@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class MahasiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('mahasiswa.index');
+        $response = Http::get('http://localhost:8080/api/mahasiswa');
+        if ($response->successful()){
+            $datas = $response->json();
+            return view('mahasiswa.index', compact('datas'));
+        }
+        return response()->json(['error' => 'Gagal Mengambil Data Dari API'], 500);
     }
 
     /**
@@ -27,7 +30,20 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_mahasiswa' => 'required|string|max:255',
+            'alamat_mahasiswa' => 'required|string|max:255',
+            'id_prodi' => 'required',
+        ]);
+        $response = Http::post('http:localhost:8080/api/matkul',[
+            'nama_mahasiswa' => $request->nama_mahasiswa,
+            'alamat_mahasiswa' => $request->alamat_mahasiswa,
+            'id_prodi' => $request->id_prodi,
+        ]);
+        if($response->successful()){
+            return redirect()->route('mahasiswa.index')->with('success', 'data berhasil ditambahkan');
+        }
+        return back()->with('error', 'Gagal Menambahkan data');
     }
 
     /**

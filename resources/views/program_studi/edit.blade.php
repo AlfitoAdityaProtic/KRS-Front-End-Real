@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Program Studi</title>
+    <title>Edit Program Studi</title>
 
     <!-- Google Font -->
     <link rel="stylesheet"
@@ -31,12 +31,14 @@
                     style="border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); background: rgb(254, 254, 254, 0.5); backdrop-filter: blur(10px); padding: 30px; width: 100%; max-width: 600px;">
                     <h3 class="text-center fw-bold mb-4">Edit Program Studi</h3>
 
-                    <form>
+                    <form action="{{route('prodi.update', $prodi['id_prodi']) }}" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="form-group bg-transparent">
-                            <label for="namaProdi" class="form-label fw-semibold"
+                            <label for="nama_prodi" class="form-label fw-semibold"
                                 style=" font-size: 16px;">Nama Program Studi</label>
-                            <input type="text" class="form-control" id="namaProdi"
-                                placeholder="Masukkan Nama Program Studi" required
+                            <input type="text" class="form-control" id="nama_prodi" name="nama_prodi"
+                                placeholder="Masukkan Nama Program Studi" value="{{ $prodi['nama_prodi'] }}" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
                         </div>
 

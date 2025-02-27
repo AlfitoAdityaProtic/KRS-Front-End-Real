@@ -31,15 +31,16 @@
                     style="border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); background: rgb(254, 254, 254, 0.5); backdrop-filter: blur(10px); padding: 30px; width: 100%; max-width: 600px;">
                     <h3 class="text-center fw-bold mb-4">Tambah Program Studi</h3>
 
-                    <form>
+                    <form action="store" method="POST">
+                        @csrf
                         <div class="form-group bg-transparent">
                             <label for="namaProdi" class="form-label fw-semibold"
                                 style=" font-size: 16px;">Nama Program Studi</label>
-                            <input type="text" class="form-control" id="namaProdi"
+                            <input type="text" class="form-control" id="namaProdi" name="nama_prodi"
                                 placeholder="Masukkan Nama Program Studi" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
                         </div>
-
+ 
                         <div class="d-flex justify-content-between mt-3">
                             <a href="/prodi" class="btn"
                                 style="background-color: #ff9800; color: white; border-radius: 8px; font-size: 16px; font-weight: 600; padding: 14px; width: 48%;"

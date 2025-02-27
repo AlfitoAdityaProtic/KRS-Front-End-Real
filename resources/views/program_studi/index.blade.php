@@ -9,122 +9,76 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-8 mx-auto">
-            <div class="card shadow">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="m-0">Daftar Program Studi</h5>
-                    <!-- Input Pencarian -->
-                    <div class="input-group" style="width: 250px;">
-                        <input type="text" id="searchInput" class="form-control form-control-sm"
-                            placeholder="Cari program studi...">
-                        <button class="btn btn-outline-secondary btn-sm" type="button" id="searchButton">
-                            <i class="fas fa-search"></i>
-                        </button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="m-0">Daftar Program Studi</h5>
+                        <!-- Input Pencarian -->
+                        <div class="input-group" style="width: 250px;">
+                            <input type="text" id="searchInput" class="form-control form-control-sm"
+                                placeholder="Cari program studi...">
+                            <button class="btn btn-outline-secondary btn-sm" type="button" id="searchButton">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <a href="prodi/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah Prodi</a>
-                    <a href="#" class="btn btn-warning mb-3 float-right mr-3 shadow"><i class="fas fa-download"></i>PDF</a>
-                    <a href="#" class="btn btn-secondary mb-3 float-right mr-3 shadow"><i class="fas fa-file-download"></i>Excel</a>
-                    
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped text-center" id="produkTable">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>No</th>
-                                    <th>ID Prodi</th>
-                                    <th>Nama Prodi</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{-- @foreach ($produks as $item) --}}
-                                <tr>
-                                    <td>1</td>
-                                    <td>1898900</td>
-                                    <td>Teknik Informatika</td>
-                                    <td>
-                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
-                                                class="fas fa-edit"></i>Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
-                                            Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>123</td>
-                                    <td>Teknik Elektro</td>
-                                    <td>
-                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
-                                                class="fas fa-edit"></i>Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
-                                            Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>77777</td>
-                                    <td>Teknik Mesin</td>
-                                    <td>
-                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
-                                                class="fas fa-edit"></i>Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
-                                            Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>6666</td>
-                                    <td>Teknik rpl</td>
-                                    <td>
-                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
-                                                class="fas fa-edit"></i>Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
-                                            Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>6667</td>
-                                    <td>ppa</td>
-                                    <td>
-                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
-                                                class="fas fa-edit"></i>Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
-                                            Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>9999</td>
-                                    <td>kimia</td>
-                                    <td>
-                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
-                                                class="fas fa-edit"></i>Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
-                                            Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>10000</td>
-                                    <td>ttrm</td>
-                                    <td>
-                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
-                                                class="fas fa-edit"></i>Edit</a>
-                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
-                                            Delete</a>
-                                    </td>
-                                </tr>
-                                {{-- @endforeach --}}
-                            </tbody>
-                        </table>
+                    <div class="card-body">
+                        <a href="prodi/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah
+                            Prodi</a>
+                        <a href="#" class="btn btn-warning mb-3 float-right mr-3 shadow"><i
+                                class="fas fa-download"></i>PDF</a>
+                        <a href="#" class="btn btn-secondary mb-3 float-right mr-3 shadow"><i
+                                class="fas fa-file-download"></i>Excel</a>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped text-center" id="produkTable">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>ID Prodi</th>
+                                        <th>Nama Prodi</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (count($datas) > 0)
+                                        @foreach ($datas['data_prodi'] as $data)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $data['id_prodi'] }}</td>
+                                                <td>{{ $data['nama_prodi'] }}</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-center gap-1">
+                                                        <a href="{{ route('prodi.edit', $data['id_prodi']) }}"
+                                                            class="btn btn-success btn-sm">
+                                                            <i class="fas fa-edit"></i> Edit
+                                                        </a>
+
+                                                        <form action="{{ route('prodi.destroy', $data['id_prodi']) }}"
+                                                            method="POST" class="ml-2">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                <i class="fas fa-trash"></i> Delete
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- Script untuk Pencarian -->
     <script>

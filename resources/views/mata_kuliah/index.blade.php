@@ -17,7 +17,7 @@
                         <h5 class="m-0">Daftar Mata Kuliah</h5>
                         <div class="input-group" style="width: 300px;">
                             <input type="text" id="searchInput" class="form-control form-control-sm"
-                                placeholder="Cari program studi...">
+                                placeholder="Cari Mata Kuliah...">
                             <button class="btn btn-outline-secondary btn-sm" type="button" id="searchButton">
                                 <i class="fas fa-search"></i>
                             </button>
@@ -47,19 +47,36 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>123234</td>
-                                        <td>3</td>
-                                        <td>Matematika</td>
-                                        <td>8</td>
-                                        <td>8 jam</td>
-                                        <td> - </td>
+                                        @if (count($datas) > 0)
+                                            @foreach ($datas['data_matkul'] as $data)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $data['id_matkul'] }}</td>
+                                        <td>{{ $data['semester'] }}</td>
+                                        <td>{{ $data['nama_matkul'] }}</td>
+                                        <td>{{ $data['banyak_sks'] }}</td>
+                                        <td>{{ $data['banyak_jam_matkul'] }}</td>
+                                        <td>{{ $data['keterangan'] }}</td>
                                         <td>
-                                            <a href="matkul/edit" class="btn btn-success btn-sm text-nowrap"><i class="fas fa-edit"></i>
-                                                Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm text-nowrap"><i class="fas fa-trash"></i>
-                                                Delete</a>
+                                            <div class="d-flex justify-content-center gap-1">
+                                                <a href="{{ route('matkul.edit', $data['id_matkul']) }}"
+                                                    class="btn btn-success btn-sm">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+
+                                                <form action="{{ route('matkul.destroy', $data['id_matkul']) }}"
+                                                    method="POST" class="ml-2">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
                                     </tr>
                                 </tbody>
                             </table>

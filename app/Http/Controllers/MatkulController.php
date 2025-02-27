@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class MatkulController extends Controller
 {
@@ -11,7 +13,12 @@ class MatkulController extends Controller
      */
     public function index()
     {
-        return view('mata_kuliah.index');
+        $response = Http::get('http://localhost:8080/api/matkul');
+        if ($response->successful()) {
+            $datas = $response->json();
+            return view('mata_kuliah.index', compact('datas'));
+        }
+        return response()->json(['error' => 'Gagal Mengambil Data dari API'], 500);
     }
 
     /**
@@ -27,23 +34,39 @@ class MatkulController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'semester' => 'required|integer',
+            'nama_matkul' => 'required|string|max:255',
+            'banyak_sks' => 'required|integer',
+            'banyak_jam_matkul' => 'required|integer',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+        $response = Http::post('http://localhost:8080/api/matkul', [
+            'semester' => $request->semester,
+            'nama_matkul' => $request->nama_matkul,
+            'banyak_sks' => $request->banyak_sks,
+            'banyak_jam_matkul' => $request->banyak_jam_matkul,
+            'keterangan' => $request->keterangan,
+        ]);
+        if ($response->successful()) {
+            return redirect()->route('matkul.index')->with('success', 'Data Berhasil Ditambahkan!');
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return back()->with('error', 'Gagal Menambahkan data');
     }
 
     /**
      * Show the form for editing the specified resource. sementara parameter string $id nya aku matikan dulu
      */
-    public function edit()
+    public function edit(string $id)
     {
-        return view('mata_kuliah.edit');
+        $response = Http::get('http://localhost:8080/api/matkul/' . $id);
+
+        if ($response->successful()) {
+            $data = $response->json();
+            return view('mata_kuliah.edit', ['matkul' => $data['matkul_byid']]);
+        }
+        return response()->json(['error' => 'gagal Fetch data'], 500);
     }
 
     /**
@@ -51,7 +74,25 @@ class MatkulController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'semester' => 'required|integer',
+            'nama_matkul' => 'required|string|max:255',
+            'banyak_sks' => 'required|integer',
+            'banyak_jam_matkul' => 'required|integer',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+        $response = Http::put('http://localhost:8080/api/matkul/' . $id, [
+            'semester' => $request->semester,
+            'nama_matkul' => $request->nama_matkul,
+            'banyak_sks' => $request->banyak_sks,
+            'banyak_jam_matkul' => $request->banyak_jam_matkul,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        if ($response->successful()) {
+            return redirect()->route('matkul.index')->with('success', 'Data Berhasil di update');
+        }
+        return back()->with('error', 'Gagal Menambahkan data');
     }
 
     /**
@@ -59,6 +100,11 @@ class MatkulController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $response = Http::delete('http://localhost:8080/api/matkul/' . $id);
+
+        if ($response->successful()) {
+            return redirect()->route('matkul.index')->with('success', 'Data berhasil dihapus');
+        }
+        return back()->with('error', 'Gagal Menghapus data');
     }
 }

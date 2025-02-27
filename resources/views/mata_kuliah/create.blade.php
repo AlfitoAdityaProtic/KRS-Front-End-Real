@@ -32,40 +32,35 @@
                     style="border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); background: rgb(254, 254, 254, 0.5); backdrop-filter: blur(10px); padding: 30px; width: 100%; max-width: 600px;">
                     <h3 class="text-center fw-bold mb-4" style="font-weight:600">Tambah Mata Kuliah</h3>
 
-                    <form>
+                    <form action='store' method="POST">
+                        @csrf
                         <div class="form-group bg-transparent">
-                            <label for="id_matkul" class="form-label fw-semibold mb-1" style=" font-size: 16px;">ID Mata
-                                Kuliah</label>
-                            <input type="text" class="form-control mb-3" id="id_matkul"
-                                placeholder="Masukkan ID Mata Kuliah" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
-                                style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
-
                             <label for="semester" class="form-label fw-semibold mb-1"
                                 style=" font-size: 16px;">Semester</label>
-                            <input type="text" class="form-control mb-3" id="semester"
+                            <input type="text" class="form-control mb-3" id="semester" name="semester"
                                 placeholder="Masukkan semester" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
 
                             <label for="nama_matkul" class="form-label fw-semibold mb-1" style=" font-size: 16px;">Nama
                                 Mata Kuliah</label>
-                            <input type="text" class="form-control mb-3" id="nama_matkul"
+                            <input type="text" class="form-control mb-3" id="nama_matkul" name="nama_matkul"
                                 placeholder="Masukkan Nama Mata Kuliah" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
 
-                            <label for="sks" class="form-label fw-semibold mb-1" style="font-size: 16px;">Banyak
+                            <label for="banyak_sks" class="form-label fw-semibold mb-1" style="font-size: 16px;">Banyak
                                 SKS</label>
-                            <input type="text" class="form-control mb-3" id="sks"
+                            <input type="text" class="form-control mb-3" id="banyak_sks" name="banyak_sks"
                                 placeholder="Masukkan Jumlah SKS" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
 
-                            <label for="sks" class="form-label fw-semibold mb-1" style="font-size: 16px;">Banyak
+                            <label for="banyak_jam_matkul" class="form-label fw-semibold mb-1" style="font-size: 16px;">Banyak
                                 Jam Matkul</label>
-                            <input type="text" class="form-control mb-3" id="sks"
+                            <input type="text" class="form-control mb-3" id="banyak_jam_matkul" name="banyak_jam_matkul"
                                 placeholder="Masukkan Jumlah Jam Mata Kuliah" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
 
                             <label for="keterangan" class="form-label fw-semibold mb-1" style="font-size: 16px;">Keterangan</label>
-                            <input type="text" class="form-control mb-3" id="keterangan" placeholder="Masukan Keterangan"
+                            <input type="text" class="form-control mb-3" id="keterangan" name="keterangan" placeholder="Masukan Keterangan"
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
                         </div>
 
