@@ -50,6 +50,7 @@ Route::get('mahasiswa/edit',[MahasiswaController::class, 'edit']);
 // ROUTES MATA KULIAH START
 Route::get('matkul',[MatkulController::class, 'index']);
 Route::get('matkul/create',[MatkulController::class, 'create']);
+Route::get('matkul/edit',[MatkulController::class, 'edit']);
 // ROUTES MATA KULIAH END
 
 

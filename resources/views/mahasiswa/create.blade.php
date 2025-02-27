@@ -34,12 +34,15 @@
 
                     <form>
                         <div class="form-group bg-transparent">
-                            <label for="npm" class="form-label fw-semibold mb-1" style=" font-size: 16px;">NPM</label>
-                            <input type="text" class="form-control mb-3" id="npm" placeholder="Masukkan NPM Anda"
+                            <label for="npm" class="form-label fw-semibold mb-1"
+                                style=" font-size: 16px;">NPM</label>
+                            <input type="text" class="form-control mb-3" id="npm"
+                                placeholder="Masukkan NPM Anda" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                 required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
 
-                            <label for="nama_mahasiswa" class="form-label fw-semibold mb-1" style=" font-size: 16px;">Nama
+                            <label for="nama_mahasiswa" class="form-label fw-semibold mb-1"
+                                style=" font-size: 16px;">Nama
                                 Mahasiswa</label>
                             <input type="text" class="form-control mb-3" id="nama_mahasiswa"
                                 placeholder="Masukkan Nama Anda" required
@@ -51,7 +54,8 @@
                                 placeholder="Masukkan Alamat Rumah Anda" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
 
-                            <label for="namaProdi" class="form-label fw-semibold mb-1" style="font-size: 16px;">Pilih Program
+                            <label for="namaProdi" class="form-label fw-semibold mb-1" style="font-size: 16px;">Pilih
+                                Program
                                 Studi</label>
                             <select class="form-control mb-3" id="namaProdi" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent; height:50px">

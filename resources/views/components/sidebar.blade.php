@@ -8,7 +8,7 @@
         (object) [
             'title' => 'Program Studi',
             'path' => 'prodi',
-            'icon' => 'fas fa-wrench',
+            'icon' => 'fas fa-university',
         ],
         (object) [
             'title' => 'Mahasiswa',
@@ -28,9 +28,9 @@
     ];
 @endphp
 
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4 position-fixed h-100">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link" style="display: flex; align-items: center; ">
+    <a href="dashboard" class="brand-link" style="display: flex; align-items: center; ">
         <img src="templates/dist/img/Logo_pnc.png" alt="KRS PNC" class="brand-image img-circle"
             style="width: 40px; height: 40px; object-fit: cover; opacity: 1;">
         <span class="brand-text font-weight-light" style="font-size: 16px; font-weight: 600; color: white;">
@@ -80,8 +80,6 @@
                         </a>
                     </li>
                 @endforeach
-
-
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

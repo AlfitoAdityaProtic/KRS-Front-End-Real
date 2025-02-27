@@ -25,7 +25,7 @@
                 </div>
                 <div class="card-body">
                     <a href="prodi/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah Prodi</a>
-                    <a href="#" class="btn btn-danger mb-3 float-right mr-3 shadow"><i class="fas fa-download"></i>PDF</a>
+                    <a href="#" class="btn btn-warning mb-3 float-right mr-3 shadow"><i class="fas fa-download"></i>PDF</a>
                     <a href="#" class="btn btn-secondary mb-3 float-right mr-3 shadow"><i class="fas fa-file-download"></i>Excel</a>
                     
                     <div class="table-responsive">
@@ -77,6 +77,39 @@
                                     <td>4</td>
                                     <td>6666</td>
                                     <td>Teknik rpl</td>
+                                    <td>
+                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
+                                                class="fas fa-edit"></i>Edit</a>
+                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
+                                            Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>6667</td>
+                                    <td>ppa</td>
+                                    <td>
+                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
+                                                class="fas fa-edit"></i>Edit</a>
+                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
+                                            Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>9999</td>
+                                    <td>kimia</td>
+                                    <td>
+                                        <a href="prodi/edit" class="btn btn-success btn-sm"><i
+                                                class="fas fa-edit"></i>Edit</a>
+                                        <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
+                                            Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>10000</td>
+                                    <td>ttrm</td>
                                     <td>
                                         <a href="prodi/edit" class="btn btn-success btn-sm"><i
                                                 class="fas fa-edit"></i>Edit</a>

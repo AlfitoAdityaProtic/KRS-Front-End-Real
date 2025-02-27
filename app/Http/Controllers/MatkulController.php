@@ -19,7 +19,7 @@ class MatkulController extends Controller
      */
     public function create()
     {
-        //
+        return view('mata_kuliah.create');
     }
 
     /**
@@ -39,11 +39,11 @@ class MatkulController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource. sementara parameter string $id nya aku matikan dulu
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        return view('mata_kuliah.edit');
     }
 
     /**

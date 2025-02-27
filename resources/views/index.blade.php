@@ -9,7 +9,10 @@
 @endsection
 
 @section('content')
-<h1>ini buat Dashboard awal aja bang</h1>
+<body >
+    <img src="./templates/dist/img/pnc.jpg" alt="" class="position:fixed">
+    
+</body>
 
 
 @endsection
