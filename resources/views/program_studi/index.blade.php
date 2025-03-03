@@ -23,6 +23,7 @@
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
+
                     </div>
                     <div class="card-body">
                         <a href="prodi/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah
@@ -31,7 +32,19 @@
                                 class="fas fa-download"></i>PDF</a>
                         <a href="#" class="btn btn-secondary mb-3 float-right mr-3 shadow"><i
                                 class="fas fa-file-download"></i>Excel</a>
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                style="background: rgba(40, 167, 69, 0.2); border: 1px solid rgba(40, 167, 69, 0.5); color: #155724;">
+                                {{ session('success') }}
+                            </div>
+                        @endif
 
+                        @if (session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                style="background: rgba(220, 53, 69, 0.2); border: 1px solid rgba(220, 53, 69, 0.5); color: #721c24;">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped text-center" id="produkTable">
                                 <thead class="table-dark">
@@ -91,5 +104,14 @@
                 row.style.display = namaProduk.includes(searchText) ? '' : 'none';
             });
         });
+        setTimeout(function() {
+            let alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                setTimeout(() => alert.remove(), 500);
+            });
+        }, 2000);
     </script>
+
 @endsection

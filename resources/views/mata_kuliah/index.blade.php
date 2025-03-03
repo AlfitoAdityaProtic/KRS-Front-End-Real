@@ -31,6 +31,20 @@
                         <a href="#" class="btn btn-secondary mb-3 float-right mr-2 shadow"><i
                                 class="fas fa-file-download"></i> Excel</a>
 
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                style="background: rgba(40, 167, 69, 0.2); border: 1px solid rgba(40, 167, 69, 0.5); color: #155724;">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                style="background: rgba(220, 53, 69, 0.2); border: 1px solid rgba(220, 53, 69, 0.5); color: #721c24;">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped text-center w-100" id="produkTable">
                                 <thead class="table-dark">
@@ -80,12 +94,12 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div> <!-- End Table Responsive -->
-                    </div> <!-- End Card Body -->
-                </div> <!-- End Card -->
-            </div> <!-- End Col -->
-        </div> <!-- End Row -->
-    </div> <!-- End Container Fluid -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Script untuk Pencarian -->
@@ -99,5 +113,13 @@
                 row.style.display = namaProduk.includes(searchText) ? '' : 'none';
             });
         });
+        setTimeout(function() {
+            let alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                setTimeout(() => alert.remove(), 500); // Hapus elemen setelah fade out
+            });
+        }, 2000); // 2 detik
     </script>
 @endsection

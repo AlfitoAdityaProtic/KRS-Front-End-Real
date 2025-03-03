@@ -13,9 +13,12 @@ class ProdiController extends Controller
      */
     public function index()
     {
-        $response = Http::get('http://localhost:8080/api/prodi');
+        $response = Http::get('http://localhost:8080/api/prodi', [
+            'sort_by' => 'id',
+            'order' => 'asc'
+        ]);
         if ($response->successful()) {
-            $datas = $response->json();
+            $datas = collect($response->json())->sortByDesc('id');
             return view('program_studi.index', compact('datas'));
         }
         return response()->json(['error' => 'Gagal Mengambil Data dari API'], 500);
