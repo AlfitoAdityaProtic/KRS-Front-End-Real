@@ -12,6 +12,7 @@ class MahasiswaController extends Controller
         $response = Http::get('http://localhost:8080/api/mahasiswa');
         if ($response->successful()){
             $datas = $response->json();
+            
             return view('mahasiswa.index', compact('datas'));
         }
         return response()->json(['error' => 'Gagal Mengambil Data Dari API'], 500);
@@ -22,7 +23,13 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('mahasiswa.create');
+        $response = Http::get('http://localhost:8080/api/prodi');
+
+        if ($response->successful()){
+            $datas = $response->json()['data_prodi'];
+            return view('mahasiswa.create', compact('datas'));
+        }
+        return redirect()->back()->with('error', 'Gagal mengambil data Program Studi');
     }
 
     /**
@@ -31,15 +38,18 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'NPM' => 'required|string|max:255',
             'nama_mahasiswa' => 'required|string|max:255',
             'alamat_mahasiswa' => 'required|string|max:255',
             'id_prodi' => 'required',
         ]);
-        $response = Http::post('http:localhost:8080/api/matkul',[
+        $response = Http::post('http://localhost:8080/api/mahasiswa',[
+            'NPM' => $request->NPM,
             'nama_mahasiswa' => $request->nama_mahasiswa,
             'alamat_mahasiswa' => $request->alamat_mahasiswa,
             'id_prodi' => $request->id_prodi,
         ]);
+
         if($response->successful()){
             return redirect()->route('mahasiswa.index')->with('success', 'data berhasil ditambahkan');
         }
@@ -57,9 +67,18 @@ class MahasiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(string $id)
     {
-        return view('mahasiswa.edit');
+        $responseMahasiswa = Http::get('http://localhost:8080/api/mahasiswa/' . $id);
+
+        $responseProdi = Http::get('http://localhost:8080/api/prodi');
+        
+        if($responseMahasiswa->successful() && $responseProdi->successful()){
+            $mahasiswa = $responseMahasiswa->json()['mhs_byid'];
+            $prodi = $responseProdi->json()['data_prodi'];
+            return view('mahasiswa.edit', compact('mahasiswa', 'prodi'));
+        }
+        return response()->json(['error' => 'gagal fetch data'], 500);
     }
 
     /**
@@ -67,7 +86,23 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'NPM' => 'required|string|max:255',
+            'nama_mahasiswa' => 'required|string|max:255',
+            'alamat_mahasiswa' => 'required|string|max:255',
+            'id_prodi' => 'required',
+        ]);
+        $response = Http::put('http://localhost:8080/api/mahasiswa/' . $id, [
+            'NPM' => $request->NPM,
+            'nama_mahasiswa' => $request->nama_mahasiswa,
+            'alamat_mahasiswa' => $request->alamat_mahasiswa,
+            'id_prodi' => $request->id_prodi,
+        ]);
+
+        if ($response->successful()) {
+            return redirect()->route('mahasiswa.index')->with('success', 'Data Berhasil di update');
+        }
+        return back()->with('error', 'Gagal Mengupdate data');
     }
 
     /**
@@ -75,6 +110,11 @@ class MahasiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $response = Http::delete('http://localhost:8080/api/mahasiswa/' . $id);
+
+        if ($response->successful()) {
+            return redirect()->route('mahasiswa.index')->with('success', 'Data berhasil dihapus');
+        }
+        return back()->with('error', 'Gagal Menghapus data');
     }
 }

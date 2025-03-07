@@ -46,8 +46,9 @@
                             </div>
                         @endif
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped text-center" id="produkTable">
-                                <thead class="table-dark">
+                            <table class="table table-bordered table-striped text-center" id="produkTable"
+                                style="border-radius: 10px; overflow: hidden;">
+                                <thead style="background: #343a40; color: white;">
                                     <tr>
                                         <th>No</th>
                                         <th>ID Prodi</th>

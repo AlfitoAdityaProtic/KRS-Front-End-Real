@@ -32,11 +32,12 @@
                     style="border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); background: rgb(254, 254, 254, 0.5); backdrop-filter: blur(10px); padding: 30px; width: 100%; max-width: 600px;">
                     <h3 class="text-center fw-bold mb-4" style="font-weight:600">Tambah Daftar Mahasiswa</h3>
 
-                    <form>
+                    <form action="store" method="POST">
+                        @csrf
                         <div class="form-group bg-transparent">
-                            <label for="npm" class="form-label fw-semibold mb-1"
+                            <label for="NPM" class="form-label fw-semibold mb-1"
                                 style=" font-size: 16px;">NPM</label>
-                            <input type="text" class="form-control mb-3" id="npm"
+                            <input type="text" class="form-control mb-3" id="NPM" name="NPM"
                                 placeholder="Masukkan NPM Anda" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                 required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
@@ -44,27 +45,26 @@
                             <label for="nama_mahasiswa" class="form-label fw-semibold mb-1"
                                 style=" font-size: 16px;">Nama
                                 Mahasiswa</label>
-                            <input type="text" class="form-control mb-3" id="nama_mahasiswa"
+                            <input type="text" class="form-control mb-3" id="nama_mahasiswa" name="nama_mahasiswa"
                                 placeholder="Masukkan Nama Anda" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
 
                             <label for="alamat_mahasiswa" class="form-label fw-semibold mb-1"
                                 style=" font-size: 16px;">Alamat Mahasiswa</label>
-                            <input type="text" class="form-control mb-3" id="alamat_mahasiswa"
+                            <input type="text" class="form-control mb-3" id="alamat_mahasiswa" name="alamat_mahasiswa"
                                 placeholder="Masukkan Alamat Rumah Anda" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
 
-                            <label for="namaProdi" class="form-label fw-semibold mb-1" style="font-size: 16px;">Pilih
+                            <label for="nama_prodi" class="form-label fw-semibold mb-1" style="font-size: 16px;">Pilih
                                 Program
-                                Studi</label>
-                            <select class="form-control mb-3" id="namaProdi" required
+                                Studi
+                            </label>
+                            <select class="form-control mb-3" id="id_prodi" name="id_prodi" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent; height:50px">
                                 <option value="" disabled selected>Pilih Program Studi</option>
-                                <option value="ti">Teknik Informatika</option>
-                                <option value="tm">Teknik Mesin</option>
-                                <option value="te">Teknik Elektro</option>
-                                <option value="tl">Teknik Listrik</option>
-                                <option value="rpl">Rekayasa Perangkat Lunak</option>
+                                @foreach ($datas as $data)
+                                    <option value="{{ $data['id_prodi'] }}">{{ $data['nama_prodi'] }}</option>
+                                @endforeach
                             </select>
 
                         </div>
@@ -99,6 +99,23 @@
     <!-- AdminLTE -->
     <script src="{{ asset('/templates/dist/js/adminlte.min.js') }}"></script>
 
+    {{-- <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            fetch('http://localhost:8080/api/prodi')
+            .then(response=> response.json())
+            .then(data => {
+                let selectProdi = document.getElementById("nama_prodi");
+
+                data.data_prodi.forEach(prodi => {
+                    let option = document.createElement("option");
+                    option.value = prodi.id_prodi;
+                    option.textContent = prodi.nama_prodi;
+                    selectProdi.appendChild(option);
+                });
+            })
+            .catch(error => console.error("Error fetching data :", error));
+        });
+    </script> --}}
 </body>
 
 </html>

@@ -33,6 +33,20 @@
                         <a href="#" class="btn btn-secondary mb-3 float-right mr-3 shadow"><i
                                 class="fas fa-file-download"></i>Excel</a>
 
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                style="background: rgba(40, 167, 69, 0.2); border: 1px solid rgba(40, 167, 69, 0.5); color: #155724;">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                style="background: rgba(220, 53, 69, 0.2); border: 1px solid rgba(220, 53, 69, 0.5); color: #721c24;">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped text-center" id="produkTable"
                                 style="border-radius: 10px; overflow: hidden;">
@@ -47,91 +61,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>230202002</td>
-                                        <td>Alfito</td>
-                                        <td>Jalan Jalan</td>
-                                        <td>Teknik Informatika</td>
-                                        <td>
-                                            <a href="mahasiswa/edit" class="btn btn-success btn-sm text-nowrap"
-                                                style="border-radius: 5px; padding: 5px 10px;">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm text-nowrap"
-                                                style="border-radius: 5px; padding: 5px 10px;">
-                                                <i class="fas fa-trash"></i> Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>230202003</td>
-                                        <td>Alis</td>
-                                        <td>Jalan Manunggal</td>
-                                        <td>Teknik Informatika</td>
-                                        <td>
-                                            <a href="mahasiswa/edit" class="btn btn-success btn-sm text-nowrap"
-                                                style="border-radius: 5px; padding: 5px 10px;">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm text-nowrap"
-                                                style="border-radius: 5px; padding: 5px 10px;">
-                                                <i class="fas fa-trash"></i> Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>230202004</td>
-                                        <td>Azka</td>
-                                        <td>Jalan Bogowonto</td>
-                                        <td>Teknik Informatika</td>
-                                        <td>
-                                            <a href="mahasiswa/edit" class="btn btn-success btn-sm text-nowrap"
-                                                style="border-radius: 5px; padding: 5px 10px;">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm text-nowrap"
-                                                style="border-radius: 5px; padding: 5px 10px;">
-                                                <i class="fas fa-trash"></i> Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>230202005</td>
-                                        <td>Bikra</td>
-                                        <td>Jalan Kalimas</td>
-                                        <td>Teknik Informatika</td>
-                                        <td>
-                                            <a href="mahasiswa/edit" class="btn btn-success btn-sm text-nowrap"
-                                                style="border-radius: 5px; padding: 5px 10px;">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm text-nowrap"
-                                                style="border-radius: 5px; padding: 5px 10px;">
-                                                <i class="fas fa-trash"></i> Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>230202006</td>
-                                        <td>aaaaaaaaaaaa</td>
-                                        <td>Jalan Kasda</td>
-                                        <td>Teknik multimedia</td>
-                                        <td>
-                                            <a href="mahasiswa/edit" class="btn btn-success btn-sm text-nowrap"
-                                                style="border-radius: 5px; padding: 5px 10px;">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm text-nowrap"
-                                                style="border-radius: 5px; padding: 5px 10px;">
-                                                <i class="fas fa-trash"></i> Delete
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @if (count($datas) > 0)
+                                        @foreach ($datas['data_mahasiswa'] as $data)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $data['NPM'] }}</td>
+                                                <td>{{ $data['nama_mahasiswa'] }}</td>
+                                                <td>{{ $data['alamat_mahasiswa'] }}</td>
+                                                <td>{{ $data['id_prodi'] }}</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-center gap-1">
+                                                        <a href="{{ route('mahasiswa.edit', $data['NPM']) }}"
+                                                            class="btn btn-success btn-sm">
+                                                            <i class="fas fa-edit"></i> Edit
+                                                        </a>
+
+                                                        <form action="{{ route('mahasiswa.destroy', $data['NPM']) }}"
+                                                            method="POST" class="ml-2">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                <i class="fas fa-trash"></i> Delete
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -152,5 +111,13 @@
                 row.style.display = namaMahasiswa.includes(searchText) ? '' : 'none';
             });
         });
+        setTimeout(function() {
+            let alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                setTimeout(() => alert.remove(), 500);
+            });
+        }, 2000);
     </script>
 @endsection

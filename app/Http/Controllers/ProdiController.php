@@ -87,7 +87,7 @@ class ProdiController extends Controller
         if ($response->successful()){
             return redirect()->route('prodi.index')->with('success', 'Data Berhasil di update');
         }
-        return back()->with('error', 'Gagal Menambahkan data');
+        return back()->with('error', 'Gagal Mengupdate data');
     }
 
     /**

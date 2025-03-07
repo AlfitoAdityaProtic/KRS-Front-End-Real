@@ -46,8 +46,9 @@
                         @endif
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped text-center w-100" id="produkTable">
-                                <thead class="table-dark">
+                            <table class="table table-bordered table-striped text-center w-100" id="produkTable"
+                                style="border-radius: 10px; overflow: hidden;">
+                                <thead style="background: #343a40; color: white;">
                                     <tr>
                                         <th class="text-nowrap">No</th>
                                         <th class="text-nowrap">Id Mata Kuliah</th>
