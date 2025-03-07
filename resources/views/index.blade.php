@@ -32,7 +32,7 @@
                             <div class="card text-white text-center p-4"
                                 style="border-radius: 15px; font-weight: bold; font-size: 1.2rem; background: #007bff;">
                                 <h5>Jumlah Mahasiswa</h5>
-                                <p class="display-4 count" data-target="100">0</p>
+                                <p class="display-4 count" data-target="{{$mahasiswa}}">0</p>
                             </div>
                         </div>
                         <div class="col-md-6 mb-3" data-aos="fade-out" data-aos-duration="1200" data-aos-delay="600"
@@ -40,7 +40,7 @@
                             <div class="card text-white text-center p-4"
                                 style="border-radius: 15px; font-weight: bold; font-size: 1.2rem; background: #28a745;">
                                 <h5>Jumlah Prodi</h5>
-                                <p class="display-4 count" data-target="100">0</p>
+                                <p class="display-4 count" data-target="{{$prodi}}">0</p>
                             </div>
                         </div>
                     </div>
