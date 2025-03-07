@@ -9,12 +9,13 @@
 @endsection
 
 @section('content')
+    <link rel="stylesheet" href="{{ asset('node_modules/aos/dist/aos.css') }}">
 
     <body>
         <div class="container d-flex flex-column align-items-center justify-content-center"
-            style="min-height: 100vh; text-align: center;">
+            style="min-height: 100vh; text-align: center; transform: translateY(-20px); animation: fadeIn 0.8s ease-in-out forwards;">
             <!-- Card Ucapan Selamat Datang -->
-            <div class="col-md-8" data-aos="fade-down" data-aos-duration="1000">
+            <div class="col-md-8" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="200" data-aos-easing="ease-in-out">
                 <div class="card text-center p-4"
                     style="background: rgba(85, 82, 84, 0.47); backdrop-filter: blur(10px); border-radius: 15px;">
                     <h2 class="font-weight-bold">Selamat Datang di KRS Mahasiswa PNC</h2>
@@ -23,17 +24,19 @@
             </div>
 
             <!-- Card Info -->
-            <div class="row mt-4 justify-content-center">
+            <div class="row mt-4 justify-content-center" style="transform: translateY(-20px); animation: fadeOut 0.8s ease-in-out forwards;">
                 <div class="col-md-10">
                     <div class="row">
-                        <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="col-md-6 mb-3" data-aos="fade-out" data-aos-duration="1000" data-aos-delay="400"
+                            data-aos-easing="ease-in-out">
                             <div class="card text-white text-center p-4"
                                 style="border-radius: 15px; font-weight: bold; font-size: 1.2rem; background: #007bff;">
                                 <h5>Jumlah Mahasiswa</h5>
                                 <p class="display-4 count" data-target="100">0</p>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3" data-aos="fade-up" data-aos-duration="1200">
+                        <div class="col-md-6 mb-3" data-aos="fade-out" data-aos-duration="1200" data-aos-delay="600"
+                            data-aos-easing="ease-in-out">
                             <div class="card text-white text-center p-4"
                                 style="border-radius: 15px; font-weight: bold; font-size: 1.2rem; background: #28a745;">
                                 <h5>Jumlah Prodi</h5>
@@ -45,6 +48,7 @@
             </div>
         </div>
 
+        <script src="{{ asset('node_modules/aos/dist/aos.js') }}"></script>
         <script>
             window.addEventListener('load', function() {
                 const counters = document.querySelectorAll('.count');
@@ -66,7 +70,31 @@
                 });
             });
         </script>
+        <style>
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
 
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeOut {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
 
     </body>
 @endsection
