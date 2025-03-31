@@ -28,7 +28,7 @@
                     <div class="card-body">
                         <a href="prodi/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah
                             Prodi</a>
-                        <a href="{{ url('/export-prodi-pdf')}}" class="btn btn-warning mb-3 float-right mr-4 shadow"><i
+                        <a href="{{ url('/export-prodi-pdf') }}" class="btn btn-warning mb-3 float-right mr-4 shadow"><i
                                 class="fas fa-download mr-2"></i>PDF</a>
                         <a href="{{ url('/export-prodi') }}" class="btn btn-secondary mb-3 float-right mr-4 shadow"><i
                                 class="fas fa-file-download mr-2"></i>Excel</a>
@@ -96,15 +96,44 @@
 
     <!-- Script untuk Pencarian -->
     <script>
-        document.getElementById('searchButton').addEventListener('click', function() {
+        // document.getElementById('searchInput').addEventListener('input', function() {
+        //     const searchText = this.value.toLowerCase();
+        //     const rows = document.querySelectorAll('#produkTable tbody tr');
+
+        //     rows.forEach(row => {
+        //         const namaProdi = row.querySelector('td:nth-child(3)');
+        //         if (namaProdi) {
+        //             const text = namaProdi.textContent.toLowerCase();
+        //             row.style.display = text.includes(searchText) ? '' : 'none';
+        //         }
+        //     });
+        // });
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterTable();
+        });
+
+        // Event listener untuk tombol Enter
+        document.getElementById('searchInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Mencegah submit form jika ada
+                filterTable();
+            }
+        });
+
+        function filterTable() {
             const searchText = document.getElementById('searchInput').value.toLowerCase();
             const rows = document.querySelectorAll('#produkTable tbody tr');
 
             rows.forEach(row => {
-                const namaProduk = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-                row.style.display = namaProduk.includes(searchText) ? '' : 'none';
+                const namaProdi = row.querySelector('td:nth-child(3)');
+                if (namaProdi) {
+                    const text = namaProdi.textContent.toLowerCase();
+                    row.style.display = text.includes(searchText) ? '' : 'none';
+                }
             });
-        });
+        }
+
+        // Menghilangkan alert otomatis setelah 2 detik
         setTimeout(function() {
             let alerts = document.querySelectorAll('.alert');
             alerts.forEach(alert => {

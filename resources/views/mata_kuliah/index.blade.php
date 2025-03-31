@@ -26,10 +26,10 @@
                     <div class="card-body">
                         <a href="matkul/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah Mata
                             Kuliah</a>
-                        <a href="{{url('/export-matkul-pdf')}}" class="btn btn-warning mb-3 float-right shadow">
+                        <a href="{{ url('/export-matkul-pdf') }}" class="btn btn-warning mb-3 float-right shadow">
                             <i class="fas fa-download mr-2"></i>
                             PDF</a>
-                        <a href="{{url('/export-matkul')}}" class="btn btn-secondary mb-3 float-right mr-2 shadow"><i
+                        <a href="{{ url('/export-matkul') }}" class="btn btn-secondary mb-3 float-right mr-2 shadow"><i
                                 class="fas fa-file-download mr-2"></i> Excel</a>
 
                         @if (session('success'))
@@ -106,15 +106,42 @@
 
     <!-- Script untuk Pencarian -->
     <script>
-        document.getElementById('searchButton').addEventListener('click', function() {
+        // document.getElementById('searchButton').addEventListener('click', function() {
+        //     const searchText = document.getElementById('searchInput').value.toLowerCase();
+        //     const rows = document.querySelectorAll('tbody tr');
+
+        //     rows.forEach(row => {
+        //         const namaMataKuliah = row.querySelector('td:nth-child(4)'); // Kolom "Nama Mata Kuliah"
+        //         if (namaMataKuliah) {
+        //             const text = namaMataKuliah.textContent.toLowerCase();
+        //             row.style.display = text.includes(searchText) ? '' : 'none';
+        //         }
+        //     });
+        // });
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterTable();
+        });
+
+        // Event listener untuk tombol Enter
+        document.getElementById('searchInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Mencegah submit form jika ada
+                filterTable();
+            }
+        });
+
+        function filterTable() {
             const searchText = document.getElementById('searchInput').value.toLowerCase();
-            const rows = document.querySelectorAll('tbody tr');
+            const rows = document.querySelectorAll('#produkTable tbody tr');
 
             rows.forEach(row => {
-                const namaMahasiswa = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
-                row.style.display = namaMahasiswa.includes(searchText) ? '' : 'none';
+                const namaMataKuliah = row.querySelector('td:nth-child(4)');
+                if (namaMataKuliah) {
+                    const text = namaMataKuliah.textContent.toLowerCase();
+                    row.style.display = text.includes(searchText) ? '' : 'none';
+                }
             });
-        });
+        }
         setTimeout(function() {
             let alerts = document.querySelectorAll('.alert');
             alerts.forEach(alert => {

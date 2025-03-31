@@ -6,6 +6,7 @@ use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\MatkulController;
 use App\Http\Controllers\KrsController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Maatwebsite\Excel\Facades\Excel;
@@ -25,6 +26,14 @@ use App\Exports\MatkulExport;
 use App\Http\Controllers\MatkulPDFController;
 //file export pdf Matkul end
 
+//file export excel mahasiswa start
+use App\Exports\MahasiswaExport;
+//file export excel mahasiswa end
+
+//file export pdf mahasiswa start
+use App\Http\Controllers\MahasiswaPDFController;
+//file export pdf mahasiswa end
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,7 +51,16 @@ use App\Http\Controllers\MatkulPDFController;
 
 // ROUTES LOGIN START
 Route::get('/', [LoginController::class, 'index']);
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 // ROUTES LOGIN END
+
+// ROUTES REGIST START
+Route::get('/register', function(){
+    return view('auth.register');
+})->name('register');
+
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+// ROUTES REGIST END
 
 // ROUTES DASHBOARD START
 Route::get('dashboard', [DashboardController::class, 'index']);
@@ -103,3 +121,14 @@ Route::get('/export-matkul', function () {
 // ROUTES EXPORT PDF Matkul START
 Route::get('/export-matkul-pdf', [MatkulPDFController::class, 'exportPdf']);
 // ROUTES EXPORT PDF Matkul END
+
+
+// ROUTES EXPORT EXCEL MAHASISWA START
+Route::get('/export-mahasiswa', function () {
+    return Excel::download(new MahasiswaExport, 'Mahasiswa.xlsx');
+});
+// ROUTES EXPORT EXCEL MAHASISWA END
+
+// ROUTES EXPORT PDF Mahasiswa START
+Route::get('/export-mahasiswa-pdf', [MahasiswaPDFController::class, 'exportPdf']);
+// ROUTES EXPORT PDF Mahasiswa END

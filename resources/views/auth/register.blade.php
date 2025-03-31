@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -27,7 +27,7 @@
                 <img src="./templates/dist/img/Logo_pnc.png" alt="Logo PNC" width="250">
             </div>
 
-            <form action="{{ route('login.submit') }}" method="POST" class="absolute z-index-2">
+            <form action="{{ route('register.submit') }}" method="POST" class="absolute z-index-2">
                 @csrf
                 <div class="mb-3">
                     <label for="npm" class="form-label text-white" style="font-weight: 500;">NPM/Username</label>
@@ -44,21 +44,22 @@
                         </button>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 mb-2 shadow" style="font-weight: 500;">Login</button>
+                <button type="submit" class="btn btn-primary w-100 mb-2 shadow" style="font-weight: 500;">Register</button>
+
 
                 <!-- Garis pemisah dengan teks "atau" -->
-                <div class="d-flex align-items-center my-3">
+                {{-- <div class="d-flex align-items-center my-3">
                     <div style="flex-grow: 1; height: 1px; background-color: black;"></div>
                     <span class="px-3 text-dark" style="font-weight: 500;">atau</span>
                     <div style="flex-grow: 1; height: 1px; background-color: black;"></div>
-                </div>
+                </div> --}}
 
-                <a href="/register" class="btn w-100 border border-dark shadow"
+                {{-- <a href="register.html" class="btn w-100 border border-dark shadow"
                     style="font-weight: 500; background-color: white; color: black; transition: color 0.3s, background-color 0.3s;"
                     onmouseover="this.style.color='white'; this.style.backgroundColor='black';"
                     onmouseout="this.style.color='black'; this.style.backgroundColor='white';">
                     Register
-                </a>
+                </a> --}}
             </form>
         </div>
     </div>
