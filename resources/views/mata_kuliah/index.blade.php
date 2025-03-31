@@ -26,10 +26,11 @@
                     <div class="card-body">
                         <a href="matkul/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah Mata
                             Kuliah</a>
-                        <a href="#" class="btn btn-warning mb-3 float-right shadow"><i class="fas fa-download"></i>
+                        <a href="{{url('/export-matkul-pdf')}}" class="btn btn-warning mb-3 float-right shadow">
+                            <i class="fas fa-download mr-2"></i>
                             PDF</a>
-                        <a href="#" class="btn btn-secondary mb-3 float-right mr-2 shadow"><i
-                                class="fas fa-file-download"></i> Excel</a>
+                        <a href="{{url('/export-matkul')}}" class="btn btn-secondary mb-3 float-right mr-2 shadow"><i
+                                class="fas fa-file-download mr-2"></i> Excel</a>
 
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert"
@@ -107,11 +108,11 @@
     <script>
         document.getElementById('searchButton').addEventListener('click', function() {
             const searchText = document.getElementById('searchInput').value.toLowerCase();
-            const rows = document.querySelectorAll('#produkTable tbody tr');
+            const rows = document.querySelectorAll('tbody tr');
 
             rows.forEach(row => {
-                const namaProduk = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-                row.style.display = namaProduk.includes(searchText) ? '' : 'none';
+                const namaMahasiswa = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+                row.style.display = namaMahasiswa.includes(searchText) ? '' : 'none';
             });
         });
         setTimeout(function() {

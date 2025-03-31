@@ -22,15 +22,15 @@
         <div class="shadow-lg p-4"
             style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 30px; border-radius: 10px; max-width: 500px; width: 100%; 
         opacity: 0; transform: translateY(-20px); animation: fadeIn 0.8s ease-in-out forwards;">
-            <h3 class="text-center mb-4 text-dark" style="font-weight: 600;">Login dulu kang</h3>
+            <h3 class="text-center mb-4 text-dark" style="font-weight: 600;">KRS PNC</h3>
             <div class="d-flex justify-content-center mb-3 height:">
                 <img src="./templates/dist/img/Logo_pnc.png" alt="Logo PNC" width="250">
             </div>
 
             <form class="absolute z-index-2">
                 <div class="mb-3">
-                    <label for="npm" class="form-label text-white" style="font-weight: 500;">NPM</label>
-                    <input type="text" class="form-control" id="npm" placeholder="Masukkan NPM"
+                    <label for="npm" class="form-label text-white" style="font-weight: 500;">NPM/Username</label>
+                    <input type="text" class="form-control" id="npm" placeholder="Masukan NPM atau username anda"
                         oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 </div>
 

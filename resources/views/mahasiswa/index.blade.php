@@ -29,9 +29,9 @@
                             Mahasiswa
                         </a>
                         <a href="#" class="btn btn-warning mb-3 float-right mr-3 shadow"><i
-                                class="fas fa-download"></i>PDF</a>
+                                class="fas fa-download mr-2"></i>PDF</a>
                         <a href="#" class="btn btn-secondary mb-3 float-right mr-3 shadow"><i
-                                class="fas fa-file-download"></i>Excel</a>
+                                class="fas fa-file-download mr-2"></i>Excel</a>
 
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert"

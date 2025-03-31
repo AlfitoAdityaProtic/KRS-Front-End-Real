@@ -28,10 +28,10 @@
                     <div class="card-body">
                         <a href="prodi/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah
                             Prodi</a>
-                        <a href="#" class="btn btn-warning mb-3 float-right mr-3 shadow"><i
-                                class="fas fa-download"></i>PDF</a>
-                        <a href="#" class="btn btn-secondary mb-3 float-right mr-3 shadow"><i
-                                class="fas fa-file-download"></i>Excel</a>
+                        <a href="{{ url('/export-prodi-pdf')}}" class="btn btn-warning mb-3 float-right mr-4 shadow"><i
+                                class="fas fa-download mr-2"></i>PDF</a>
+                        <a href="{{ url('/export-prodi') }}" class="btn btn-secondary mb-3 float-right mr-4 shadow"><i
+                                class="fas fa-file-download mr-2"></i>Excel</a>
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert"
                                 style="background: rgba(40, 167, 69, 0.2); border: 1px solid rgba(40, 167, 69, 0.5); color: #155724;">

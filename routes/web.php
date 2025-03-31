@@ -8,6 +8,22 @@ use App\Http\Controllers\KrsController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Maatwebsite\Excel\Facades\Excel;
+//file export excel prodi start
+use App\Exports\ProdiExport;
+//file export excel prodi end
+
+//file export pdf prodi start
+use App\Http\Controllers\ProdiPDFController;
+//file export pdf prodi end
+
+//file export excel matkul start
+use App\Exports\MatkulExport;
+//file export excel matkul end
+
+//file export pdf Matkul start
+use App\Http\Controllers\MatkulPDFController;
+//file export pdf Matkul end
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +59,6 @@ Route::delete('/prodi/delete/{id}', [ProdiController::class, 'destroy'])->name('
 // ROUTES PRODI START
 
 
-
 // ROUTES MAHASISWA START
 Route::get('mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
 Route::get('mahasiswa/create', [MahasiswaController::class, 'create']);
@@ -68,3 +83,23 @@ Route::delete('matkul/delete/{id}', [MatkulController::class, 'destroy'])->name(
 Route::get('krs', [KrsController::class, 'index']);
 Route::get('krs/create', [KrsController::class, 'create']);
 // ROUTES KRS END
+
+// ROUTES EXPORT EXCEL PRODI START
+Route::get('/export-prodi', function(){
+    return Excel::download(new ProdiExport, 'prodi.xlsx');
+});
+// ROUTES EXPORT EXCEL PRODI END
+
+// ROUTES EXPORT PDF PRODI START
+Route::get('/export-prodi-pdf',[ProdiPDFController::class, 'exportPdf']);
+// ROUTES EXPORT PDF PRODI END
+
+// ROUTES EXPORT EXCEL MATKUL START
+Route::get('/export-matkul', function () {
+    return Excel::download(new MatkulExport, 'MatKul.xlsx');
+});
+// ROUTES EXPORT EXCEL MATKUL END
+
+// ROUTES EXPORT PDF Matkul START
+Route::get('/export-matkul-pdf', [MatkulPDFController::class, 'exportPdf']);
+// ROUTES EXPORT PDF Matkul END
