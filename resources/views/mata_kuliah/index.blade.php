@@ -12,24 +12,24 @@
     <div class="container-fluid"> <!-- Menggunakan container-fluid agar lebih luas -->
         <div class="row">
             <div class="col-lg-12 mx-auto"> <!-- Memperlebar kolom -->
-                <div class="card shadow">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="card shadow border-0 rounded-4">
+                    <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
                         <h5 class="m-0">Daftar Mata Kuliah</h5>
                         <div class="input-group" style="width: 300px;">
                             <input type="text" id="searchInput" class="form-control form-control-sm"
-                                placeholder="Cari Mata Kuliah...">
-                            <button class="btn btn-outline-secondary btn-sm" type="button" id="searchButton">
+                                placeholder="Cari Mata Kuliah..." style="border-radius: 5px;">
+                            <button class="btn btn-light btn-sm" type="button" id="searchButton">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
-                        <a href="matkul/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah Mata
+                        <a href="matkul/create" class="btn btn-outline-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah Mata
                             Kuliah</a>
-                        <a href="{{ url('/export-matkul-pdf') }}" class="btn btn-warning mb-3 float-right shadow">
+                        <a href="{{ url('/export-matkul-pdf') }}" class="btn btn-outline-warning mb-3 float-right shadow">
                             <i class="fas fa-download mr-2"></i>
                             PDF</a>
-                        <a href="{{ url('/export-matkul') }}" class="btn btn-secondary mb-3 float-right mr-2 shadow"><i
+                        <a href="{{ url('/export-matkul') }}" class="btn btn-outline-secondary mb-3 float-right mr-2 shadow"><i
                                 class="fas fa-file-download mr-2"></i> Excel</a>
 
                         @if (session('success'))
@@ -47,9 +47,8 @@
                         @endif
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped text-center w-100" id="produkTable"
-                                style="border-radius: 10px; overflow: hidden;">
-                                <thead style="background: #343a40; color: white;">
+                            <table class="table table-hover align-middle text-center bg-white rounded-3 overflow-hidden" id="produkTable">
+                                <thead class="bg-light text-dark">
                                     <tr>
                                         <th class="text-nowrap">No</th>
                                         <th class="text-nowrap">Id Mata Kuliah</th>
@@ -76,7 +75,7 @@
                                         <td>
                                             <div class="d-flex justify-content-center gap-1">
                                                 <a href="{{ route('matkul.edit', $data['id_matkul']) }}"
-                                                    class="btn btn-success btn-sm">
+                                                    class="btn btn-outline-success btn-sm shadow">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </a>
 
@@ -84,7 +83,7 @@
                                                     method="POST" class="ml-2">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm shadow">
                                                         <i class="fas fa-trash"></i> Delete
                                                     </button>
                                                 </form>

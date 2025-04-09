@@ -55,9 +55,6 @@ class MatkulController extends Controller
         return back()->with('error', 'Gagal Menambahkan data');
     }
 
-    /**
-     * Show the form for editing the specified resource. sementara parameter string $id nya aku matikan dulu
-     */
     public function edit(string $id)
     {
         $response = Http::get('http://localhost:8080/api/matkul/' . $id);

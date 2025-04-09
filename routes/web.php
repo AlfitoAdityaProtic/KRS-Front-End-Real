@@ -98,8 +98,12 @@ Route::delete('matkul/delete/{id}', [MatkulController::class, 'destroy'])->name(
 
 
 // ROUTES KRS START
-Route::get('krs', [KrsController::class, 'index']);
+Route::get('krs', [KrsController::class, 'index'])->name('krs.index');
 Route::get('krs/create', [KrsController::class, 'create']);
+Route::post('krs/store', [KrsController::class, 'store']);
+Route::get('krs/edit/{id}', [KrsController::class, 'edit'])->name('krs.edit');
+Route::put('krs/update/{id}', [KrsController::class, 'update'])->name('krs.update');
+Route::delete('krs/delete/{id}', [KrsController::class, 'destroy'])->name('krs.destroy');
 // ROUTES KRS END
 
 // ROUTES EXPORT EXCEL PRODI START

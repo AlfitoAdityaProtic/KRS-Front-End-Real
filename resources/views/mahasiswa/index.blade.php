@@ -12,9 +12,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 mx-auto">
-                <div class="card shadow" style="border-radius: 10px; overflow: hidden;">
-                    <div class="card-header d-flex justify-content-between align-items-center"
-                        style="border-radius: 10px 10px 0 0;">
+                <div class="card shadow-sm border-0 rounded-4">
+                    <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
                         <h5 class="m-0">Daftar Mahasiswa</h5>
                         <div class="input-group" style="width: 300px;">
                             <input type="text" id="searchInput" class="form-control form-control-sm"
@@ -25,12 +24,12 @@
                         </div>
                     </div>
                     <div class="card-body mt-10" style="background: #f8f9fa; padding: 20px;">
-                        <a href="mahasiswa/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah
+                        <a href="mahasiswa/create" class="btn btn-outline-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah
                             Mahasiswa
                         </a>
-                        <a href="{{url('/export-mahasiswa-pdf')}}" class="btn btn-warning mb-3 float-right mr-3 shadow"><i
+                        <a href="{{ url('/export-mahasiswa-pdf') }}" class="btn btn-outline-warning mb-3 float-right mr-3 shadow"><i
                                 class="fas fa-download mr-2"></i>PDF</a>
-                        <a href="{{url('/export-mahasiswa')}}" class="btn btn-secondary mb-3 float-right mr-3 shadow"><i
+                        <a href="{{ url('/export-mahasiswa') }}" class="btn btn-outline-secondary mb-3 float-right mr-3 shadow"><i
                                 class="fas fa-file-download mr-2"></i>Excel</a>
 
                         @if (session('success'))
@@ -48,9 +47,9 @@
                         @endif
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped text-center" id="produkTable"
-                                style="border-radius: 10px; overflow: hidden;">
-                                <thead style="background: #343a40; color: white;">
+                            <table class="table table-hover align-middle text-center bg-white rounded-3 overflow-hidden"
+                                id="produkTable">
+                                <thead class="bg-light text-dark">
                                     <tr>
                                         <th class="text-nowrap">No</th>
                                         <th class="text-nowrap">NPM</th>
@@ -68,11 +67,11 @@
                                                 <td>{{ $data['NPM'] }}</td>
                                                 <td>{{ $data['nama_mahasiswa'] }}</td>
                                                 <td>{{ $data['alamat_mahasiswa'] }}</td>
-                                                <td>{{ $data['id_prodi'] }}</td>
+                                                <td>{{ $data['nama_prodi'] }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-1">
                                                         <a href="{{ route('mahasiswa.edit', $data['NPM']) }}"
-                                                            class="btn btn-success btn-sm">
+                                                            class="btn btn-outline-success btn-sm shadow">
                                                             <i class="fas fa-edit"></i> Edit
                                                         </a>
 
@@ -80,7 +79,7 @@
                                                             method="POST" class="ml-2">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                            <button type="submit" class="btn btn-outline-danger btn-sm shadow">
                                                                 <i class="fas fa-trash"></i> Delete
                                                             </button>
                                                         </form>

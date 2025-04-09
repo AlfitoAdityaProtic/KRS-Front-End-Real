@@ -12,25 +12,25 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-10 mx-auto">
-                <div class="card shadow">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="card shadow-sm border-0 rounded-4">
+                    <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
                         <h5 class="m-0">Daftar Program Studi</h5>
                         <!-- Input Pencarian -->
                         <div class="input-group" style="width: 250px;">
                             <input type="text" id="searchInput" class="form-control form-control-sm"
-                                placeholder="Cari program studi...">
-                            <button class="btn btn-outline-secondary btn-sm" type="button" id="searchButton">
+                                placeholder="Cari program studi..." style="border-radius: 5px;">
+                            <button class="btn btn-light btn-sm" type="button" id="searchButton">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
 
                     </div>
                     <div class="card-body">
-                        <a href="prodi/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah
+                        <a href="prodi/create" class="btn btn-outline-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah
                             Prodi</a>
-                        <a href="{{ url('/export-prodi-pdf') }}" class="btn btn-warning mb-3 float-right mr-4 shadow"><i
+                        <a href="{{ url('/export-prodi-pdf') }}" class="btn btn-outline-warning mb-3 float-right mr-4 shadow"><i
                                 class="fas fa-download mr-2"></i>PDF</a>
-                        <a href="{{ url('/export-prodi') }}" class="btn btn-secondary mb-3 float-right mr-4 shadow"><i
+                        <a href="{{ url('/export-prodi') }}" class="btn btn-outline-secondary mb-3 float-right mr-4 shadow"><i
                                 class="fas fa-file-download mr-2"></i>Excel</a>
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert"
@@ -46,9 +46,8 @@
                             </div>
                         @endif
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped text-center" id="produkTable"
-                                style="border-radius: 10px; overflow: hidden;">
-                                <thead style="background: #343a40; color: white;">
+                            <table class="table table-hover align-middle text-center bg-white rounded-3 overflow-hidden" id="produkTable">
+                                <thead class="bg-light text-dark">
                                     <tr>
                                         <th>No</th>
                                         <th>ID Prodi</th>
@@ -66,7 +65,7 @@
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-1">
                                                         <a href="{{ route('prodi.edit', $data['id_prodi']) }}"
-                                                            class="btn btn-success btn-sm">
+                                                            class="btn btn-outline-success btn-sm shadow">
                                                             <i class="fas fa-edit"></i> Edit
                                                         </a>
 
@@ -74,7 +73,7 @@
                                                             method="POST" class="ml-2">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                            <button type="submit" class="btn btn-outline-danger btn-sm shadow">
                                                                 <i class="fas fa-trash"></i> Delete
                                                             </button>
                                                         </form>

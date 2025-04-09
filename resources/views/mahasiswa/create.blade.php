@@ -70,18 +70,18 @@
                         </div>
 
                         <div class="d-flex justify-content-between mt-3">
-                            <a href="/mahasiswa" class="btn"
-                                style="background-color: #ff9800; color: white; border-radius: 8px; font-size: 16px; font-weight: 600; padding: 14px; width: 48%;"
-                                onmouseover="this.style.backgroundColor='#e68900'"
-                                onmouseout="this.style.backgroundColor='#ff9800'">
-                                <i class="fas fa-arrow-left shadow"></i> Kembali
+                            <a href="/mahasiswa" class="btn shadow"
+                                style="border: 2px solid #ff9800; color: #ff9800; border-radius: 8px; font-size: 16px; font-weight: 600; padding: 12px 20px; width: 48%; background-color: transparent;"
+                                onmouseover="this.style.backgroundColor='#ff9800'; this.style.color='white';"
+                                onmouseout="this.style.backgroundColor='transparent'; this.style.color='#ff9800';">
+                                <i class="fas fa-arrow-left"></i> Kembali
                             </a>
 
-                            <button type="submit" class="btn"
-                                style="background-color: #28a745; color: white; border-radius: 8px; font-size: 16px; font-weight: 600; padding: 14px; width: 48%;"
-                                onmouseover="this.style.backgroundColor='#218838'"
-                                onmouseout="this.style.backgroundColor='#28a745'">
-                                <i class="fas fa-save shadow"></i> Simpan
+                            <button type="submit" class="btn shadow"
+                                style="border: 2px solid #28a745; color: #28a745; border-radius: 8px; font-size: 16px; font-weight: 600; padding: 14px; width: 48%; background-color: transparent;"
+                                onmouseover="this.style.backgroundColor='#218838'; this.style.color='white';"
+                                onmouseout="this.style.backgroundColor='transparent'; this.style.color='#218838';">
+                                <i class="fas fa-save"></i> Simpan
                             </button>
                         </div>
                     </form>

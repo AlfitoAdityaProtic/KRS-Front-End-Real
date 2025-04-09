@@ -48,6 +48,7 @@ class MahasiswaController extends Controller
             'nama_mahasiswa' => $request->nama_mahasiswa,
             'alamat_mahasiswa' => $request->alamat_mahasiswa,
             'id_prodi' => $request->id_prodi,
+            'nama_prodi' => $request->nama_prodi,
         ]);
 
         if($response->successful()){
