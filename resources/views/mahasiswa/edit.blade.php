@@ -40,7 +40,7 @@
                                 style=" font-size: 16px;">NPM</label>
                             <input type="text" class="form-control mb-3" id="NPM" name="NPM"
                                 placeholder="Masukkan NPM Anda" value="{{ $mahasiswa['NPM'] }}" required
-                                style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
+                                style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;" disabled>
 
                             <label for="nama_mahasiswa" class="form-label fw-semibold mb-1"
                                 style=" font-size: 16px;">Nama

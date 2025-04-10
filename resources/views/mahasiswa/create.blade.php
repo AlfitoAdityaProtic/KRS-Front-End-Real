@@ -31,6 +31,12 @@
                 <div class="card p-4"
                     style="border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); background: rgb(254, 254, 254, 0.5); backdrop-filter: blur(10px); padding: 30px; width: 100%; max-width: 600px;">
                     <h3 class="text-center fw-bold mb-4" style="font-weight:600">Tambah Daftar Mahasiswa</h3>
+                    @if (session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                            style="background: rgba(220, 53, 69, 0.2); border: 1px solid rgba(220, 53, 69, 0.5); color: #721c24;">
+                            {{ session('error') }}
+                        </div>
+                    @endif
 
                     <form action="store" method="POST">
                         @csrf
@@ -51,8 +57,8 @@
 
                             <label for="alamat_mahasiswa" class="form-label fw-semibold mb-1"
                                 style=" font-size: 16px;">Alamat Mahasiswa</label>
-                            <input type="text" class="form-control mb-3" id="alamat_mahasiswa" name="alamat_mahasiswa"
-                                placeholder="Masukkan Alamat Rumah Anda" required
+                            <input type="text" class="form-control mb-3" id="alamat_mahasiswa"
+                                name="alamat_mahasiswa" placeholder="Masukkan Alamat Rumah Anda" required
                                 style="border-radius: 8px; padding: 12px; font-size: 16px; border: 1px solid #ddd; background: transparent;">
 
                             <label for="nama_prodi" class="form-label fw-semibold mb-1" style="font-size: 16px;">Pilih
@@ -116,6 +122,16 @@
             .catch(error => console.error("Error fetching data :", error));
         });
     </script> --}}
+    <script>
+        setTimeout(function() {
+            let alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                setTimeout(() => alert.remove(), 500);
+            });
+        }, 2000);
+    </script>
 </body>
 
 </html>
