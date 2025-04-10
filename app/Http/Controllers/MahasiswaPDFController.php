@@ -14,7 +14,7 @@ class MahasiswaPDFController extends Controller
         $response = Http::get('http://localhost:8080/api/mahasiswa');
         $data = $response->json();
 
-        // Ambil hanya data_prodi
+        // Ambil hanya mahasiswa
         $mahasiswaData = $data['data_mahasiswa'] ?? [];
 
         //Load View dan Kirim Data

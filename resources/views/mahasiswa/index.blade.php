@@ -60,6 +60,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if ($datas['data_mahasiswa'] == null)
+                                        <tr>
+                                            <td colspan="12" class="text-center fw-semibold text-muted py-4">
+                                                Tidak ada data yang tersedia.
+                                            </td>
+                                        </tr>
+                                    @endif
                                     @if (count($datas) > 0)
                                         @foreach ($datas['data_mahasiswa'] as $data)
                                             <tr>

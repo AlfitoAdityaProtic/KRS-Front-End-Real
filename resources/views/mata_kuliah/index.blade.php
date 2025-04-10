@@ -24,12 +24,14 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <a href="matkul/create" class="btn btn-outline-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah Mata
+                        <a href="matkul/create" class="btn btn-outline-primary mb-3 shadow"><i class="fas fa-plus"></i>
+                            Tambah Mata
                             Kuliah</a>
                         <a href="{{ url('/export-matkul-pdf') }}" class="btn btn-outline-warning mb-3 float-right shadow">
                             <i class="fas fa-download mr-2"></i>
                             PDF</a>
-                        <a href="{{ url('/export-matkul') }}" class="btn btn-outline-secondary mb-3 float-right mr-2 shadow"><i
+                        <a href="{{ url('/export-matkul') }}"
+                            class="btn btn-outline-secondary mb-3 float-right mr-2 shadow"><i
                                 class="fas fa-file-download mr-2"></i> Excel</a>
 
                         @if (session('success'))
@@ -47,7 +49,8 @@
                         @endif
 
                         <div class="table-responsive">
-                            <table class="table table-hover align-middle text-center bg-white rounded-3 overflow-hidden" id="produkTable">
+                            <table class="table table-hover align-middle text-center bg-white rounded-3 overflow-hidden"
+                                id="produkTable">
                                 <thead class="bg-light text-dark">
                                     <tr>
                                         <th class="text-nowrap">No</th>
@@ -61,6 +64,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if ($datas['data_matkul'] == null)
+                                        <tr>
+                                            <td colspan="12" class="text-center fw-semibold text-muted py-4">
+                                                Tidak ada data yang tersedia.
+                                            </td>
+                                        </tr>
+                                    @endif
                                     <tr>
                                         @if (count($datas) > 0)
                                             @foreach ($datas['data_matkul'] as $data)

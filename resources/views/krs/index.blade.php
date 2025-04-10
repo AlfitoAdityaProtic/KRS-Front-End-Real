@@ -12,75 +12,159 @@
     <div class="container-fluid"> <!-- Menggunakan container-fluid agar lebih luas -->
         <div class="row">
             <div class="col-lg-12 mx-auto"> <!-- Memperlebar kolom -->
-                <div class="card shadow">
-                    <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="card shadow border-0 rounded-4">
+                    <div class="card-header d-flex justify-content-between align-items-center bg-white border-bottom">
                         <h5 class="m-0">Daftar Mata Kuliah</h5>
                         <div class="input-group" style="width: 300px;">
                             <input type="text" id="searchInput" class="form-control form-control-sm"
-                                placeholder="Cari program studi...">
-                            <button class="btn btn-outline-secondary btn-sm" type="button" id="searchButton">
+                                placeholder="Cari Mata Kuliah..." style="border-radius: 5px;">
+                            <button class="btn btn-light btn-sm" type="button" id="searchButton">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
-                        <a href="matkul/create" class="btn btn-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah Mata
+                        <a href="matkul/create" class="btn btn-outline-primary mb-3 shadow"><i class="fas fa-plus"></i>
+                            Tambah Mata
                             Kuliah</a>
-                        <a href="#" class="btn btn-warning mb-3 float-right shadow"><i class="fas fa-download"></i>
+                        <a href="{{ url('/export-krs-pdf') }}" class="btn btn-outline-warning mb-3 float-right shadow">
+                            <i class="fas fa-download mr-2"></i>
                             PDF</a>
-                        <a href="#" class="btn btn-secondary mb-3 float-right mr-2 shadow"><i
-                                class="fas fa-file-download"></i> Excel</a>
+                        <a href="{{ url('/export-krs') }}" class="btn btn-outline-secondary mb-3 float-right mr-2 shadow"><i
+                                class="fas fa-file-download mr-2"></i> Excel</a>
+
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                style="background: rgba(40, 167, 69, 0.2); border: 1px solid rgba(40, 167, 69, 0.5); color: #155724;">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                style="background: rgba(220, 53, 69, 0.2); border: 1px solid rgba(220, 53, 69, 0.5); color: #721c24;">
+                                {{ session('error') }}
+                            </div>
+                        @endif
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped text-center w-100" id="produkTable">
-                                <thead class="table-dark">
+                            <table class="table table-hover align-middle text-center bg-white rounded-3 overflow-hidden"
+                                id="produkTable">
+                                <thead class="bg-light text-dark">
                                     <tr>
                                         <th class="text-nowrap">No</th>
-                                        <th class="text-nowrap">Id Mata Kuliah</th>
+                                        <th class="text-nowrap">Waktu</th>
+                                        <th class="text-nowrap">Tahun Akademik</th>
+                                        <th class="text-nowrap">NPM</th>
+                                        <th class="text-nowrap">Nama Mahasiswa</th>
+                                        <th class="text-nowrap">Nama Prodi</th>
                                         <th class="text-nowrap">Semester</th>
-                                        <th class="text-nowrap">Nama Mata Kuliah</th>
+                                        <th class="text-nowrap">Mata Kuliah</th>
                                         <th class="text-nowrap">Banyak SKS</th>
-                                        <th class="text-nowrap">Banyak Jam Matkul</th>
+                                        <th class="text-nowrap">Banyak Jam Mata Kuliah</th>
                                         <th class="text-nowrap">Keterangan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if ($datas['data_pengisian_krs'] == null)
+                                        <tr>
+                                            <td colspan="12" class="text-center fw-semibold text-muted py-4">
+                                                Tidak ada data yang tersedia.
+                                            </td>
+                                        </tr>
+                                    @endif
                                     <tr>
-                                        <td>1</td>
-                                        <td>123234</td>
-                                        <td>3</td>
-                                        <td>Matematika</td>
-                                        <td>8</td>
-                                        <td>8 jam</td>
-                                        <td> - </td>
+                                        @if (count($datas) > 0)
+                                            @foreach ($datas['data_pengisian_krs'] as $data)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $data['timestamp'] }}</td>
+                                        <td>{{ $data['tahun_akademik'] }}</td>
+                                        <td>{{ $data['NPM'] }}</td>
+                                        <td>{{ $data['nama_mahasiswa'] }}</td>
+                                        <td>{{ $data['nama_prodi'] }}</td>
+                                        <td>{{ $data['semester'] }}</td>
+                                        <td>{{ $data['nama_matkul'] }}</td>
+                                        <td>{{ $data['banyak_sks'] }}</td>
+                                        <td>{{ $data['banyak_jam_matkul'] }}</td>
+                                        <td>{{ $data['keterangan'] }}</td>
                                         <td>
-                                            <a href="matkul/edit" class="btn btn-success btn-sm text-nowrap"><i class="fas fa-edit"></i>
-                                                Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm text-nowrap"><i class="fas fa-trash"></i>
-                                                Delete</a>
+                                            <div class="d-flex justify-content-center gap-1">
+                                                <a href="{{ route('krs.edit', $data['id_pengisian']) }}"
+                                                    class="btn btn-outline-success btn-sm shadow">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+
+                                                <form action="{{ route('krs.destroy', $data['id_pengisian']) }}"
+                                                    method="POST" class="ml-2">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm shadow">
+                                                        <i class="fas fa-trash"></i> Delete
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
                                     </tr>
                                 </tbody>
                             </table>
-                        </div> <!-- End Table Responsive -->
-                    </div> <!-- End Card Body -->
-                </div> <!-- End Card -->
-            </div> <!-- End Col -->
-        </div> <!-- End Row -->
-    </div> <!-- End Container Fluid -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Script untuk Pencarian -->
     <script>
-        document.getElementById('searchButton').addEventListener('click', function() {
+        // document.getElementById('searchButton').addEventListener('click', function() {
+        //     const searchText = document.getElementById('searchInput').value.toLowerCase();
+        //     const rows = document.querySelectorAll('tbody tr');
+
+        //     rows.forEach(row => {
+        //         const namaMataKuliah = row.querySelector('td:nth-child(4)'); // Kolom "Nama Mata Kuliah"
+        //         if (namaMataKuliah) {
+        //             const text = namaMataKuliah.textContent.toLowerCase();
+        //             row.style.display = text.includes(searchText) ? '' : 'none';
+        //         }
+        //     });
+        // });
+        document.getElementById('searchInput').addEventListener('input', function() {
+            filterTable();
+        });
+
+        // Event listener untuk tombol Enter
+        document.getElementById('searchInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Mencegah submit form jika ada
+                filterTable();
+            }
+        });
+
+        function filterTable() {
             const searchText = document.getElementById('searchInput').value.toLowerCase();
             const rows = document.querySelectorAll('#produkTable tbody tr');
 
             rows.forEach(row => {
-                const namaProduk = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-                row.style.display = namaProduk.includes(searchText) ? '' : 'none';
+                const namaMataKuliah = row.querySelector('td:nth-child(4)');
+                if (namaMataKuliah) {
+                    const text = namaMataKuliah.textContent.toLowerCase();
+                    row.style.display = text.includes(searchText) ? '' : 'none';
+                }
             });
-        });
+        }
+        setTimeout(function() {
+            let alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.classList.remove('show');
+                alert.classList.add('fade');
+                setTimeout(() => alert.remove(), 500); // Hapus elemen setelah fade out
+            });
+        }, 2000); // 2 detik
     </script>
 @endsection
