@@ -24,9 +24,10 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <a href="matkul/create" class="btn btn-outline-primary mb-3 shadow"><i class="fas fa-plus"></i>
-                            Tambah Mata
-                            Kuliah</a>
+                        <button type="button" class="btn btn-outline-primary shadow" data-toggle="modal"
+                            data-target="#TambahKRS"><i class="fas fa-plus"></i>
+                            Tambah KRS
+                        </button>
                         <a href="{{ url('/export-krs-pdf') }}" class="btn btn-outline-warning mb-3 float-right shadow">
                             <i class="fas fa-download mr-2"></i>
                             PDF</a>
@@ -91,10 +92,12 @@
                                         <td>{{ $data['keterangan'] }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-1">
-                                                <a href="{{ route('krs.edit', $data['id_pengisian']) }}"
-                                                    class="btn btn-outline-success btn-sm shadow">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </a>
+                                                <button type="button" class="btn btn-outline-success btn-sm shadow"
+                                                    data-toggle="modal"
+                                                    data-target="#editKRS{{ $data['id_pengisian'] }}"><i
+                                                        class="fas fa-edit"></i>
+                                                    Edit
+                                                </button>
 
                                                 <form action="{{ route('krs.destroy', $data['id_pengisian']) }}"
                                                     method="POST" class="ml-2">
@@ -107,6 +110,23 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <!-- Modal Edit -->
+                                    <div class="modal fade" id="editKRS{{ $data['id_pengisian'] }}" tabindex="-1"
+                                        aria-labelledby="editModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Edit KRS</h5>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span>&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @include('krs.edit')
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     @endforeach
                                     @endif
                                     </tr>
@@ -120,20 +140,24 @@
     </div>
 
 
+    {{-- Modal tambah --}}
+    <div class="modal fade" id="TambahKRS" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahModalLabel">Form Kartu Rencana Studi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @include('krs.create')
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Script untuk Pencarian -->
     <script>
-        // document.getElementById('searchButton').addEventListener('click', function() {
-        //     const searchText = document.getElementById('searchInput').value.toLowerCase();
-        //     const rows = document.querySelectorAll('tbody tr');
-
-        //     rows.forEach(row => {
-        //         const namaMataKuliah = row.querySelector('td:nth-child(4)'); // Kolom "Nama Mata Kuliah"
-        //         if (namaMataKuliah) {
-        //             const text = namaMataKuliah.textContent.toLowerCase();
-        //             row.style.display = text.includes(searchText) ? '' : 'none';
-        //         }
-        //     });
-        // });
         document.getElementById('searchInput').addEventListener('input', function() {
             filterTable();
         });

@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-md-10 d-flex justify-content-center">
         <div class="card p-4"
-            style="border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); background: rgb(254, 254, 254, 0.5); backdrop-filter: blur(10px); padding: 30px; width: 100%; max-width: 600px;">
+            style="border-radius: 15px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); background: rgb(254, 254, 254, 0.5); backdrop-filter: blur(10px); padding: 30px; width: 100%; max-width: 600px;">
             <h3 class="text-center fw-bold mb-4">Tambah Program Studi</h3>
 
             <form action="" method="POST">
