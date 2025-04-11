@@ -79,8 +79,8 @@ Route::delete('/prodi/delete/{id}', [ProdiController::class, 'destroy'])->name('
 
 // ROUTES MAHASISWA START
 Route::get('mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
-Route::get('mahasiswa/create', [MahasiswaController::class, 'create']);
-Route::post('mahasiswa/store', [MahasiswaController::class, 'store']);
+// Route::get('mahasiswa/create', [MahasiswaController::class, 'create']);
+Route::post('mahasiswa', [MahasiswaController::class, 'store']);
 Route::get('mahasiswa/edit{id}', [MahasiswaController::class, 'edit'])->name('mahasiswa.edit');
 Route::put('mahasiswa/update{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
 Route::delete('mahasiswa/delete{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
@@ -89,8 +89,8 @@ Route::delete('mahasiswa/delete{id}', [MahasiswaController::class, 'destroy'])->
 
 // ROUTES MATA KULIAH START
 Route::get('matkul', [MatkulController::class, 'index'])->name('matkul.index');
-Route::get('matkul/create', [MatkulController::class, 'create']);
-Route::post('matkul/store', [MatkulController::class, 'store']);
+// Route::get('matkul/create', [MatkulController::class, 'create']);
+Route::post('matkul', [MatkulController::class, 'store']);
 Route::get('matkul/edit/{id}', [MatkulController::class, 'edit'])->name('matkul.edit');
 Route::put('matkul/update/{id}', [MatkulController::class, 'update'])->name('matkul.update');
 Route::delete('matkul/delete/{id}', [MatkulController::class, 'destroy'])->name('matkul.destroy');

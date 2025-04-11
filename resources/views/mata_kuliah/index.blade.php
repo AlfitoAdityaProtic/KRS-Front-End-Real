@@ -24,9 +24,10 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <a href="matkul/create" class="btn btn-outline-primary mb-3 shadow"><i class="fas fa-plus"></i>
-                            Tambah Mata
-                            Kuliah</a>
+                        <button type="button" class="btn btn-outline-primary shadow" data-toggle="modal"
+                            data-target="#TambahMatkul"><i class="fas fa-plus"></i>
+                            Tambah Mata Kuliah
+                        </button>
                         <a href="{{ url('/export-matkul-pdf') }}" class="btn btn-outline-warning mb-3 float-right shadow">
                             <i class="fas fa-download mr-2"></i>
                             PDF</a>
@@ -35,14 +36,14 @@
                                 class="fas fa-file-download mr-2"></i> Excel</a>
 
                         @if (session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert"
                                 style="background: rgba(40, 167, 69, 0.2); border: 1px solid rgba(40, 167, 69, 0.5); color: #155724;">
                                 {{ session('success') }}
                             </div>
                         @endif
 
                         @if (session('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert"
                                 style="background: rgba(220, 53, 69, 0.2); border: 1px solid rgba(220, 53, 69, 0.5); color: #721c24;">
                                 {{ session('error') }}
                             </div>
@@ -84,10 +85,12 @@
                                         <td>{{ $data['keterangan'] }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-1">
-                                                <a href="{{ route('matkul.edit', $data['id_matkul']) }}"
-                                                    class="btn btn-outline-success btn-sm shadow">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </a>
+                                                <button type="button" class="btn btn-outline-success btn-sm shadow"
+                                                    data-toggle="modal"
+                                                    data-target="#editMatkul{{ $data['id_matkul'] }}"><i
+                                                        class="fas fa-edit"></i>
+                                                    Edit
+                                                </button>
 
                                                 <form action="{{ route('matkul.destroy', $data['id_matkul']) }}"
                                                     method="POST" class="ml-2">
@@ -100,6 +103,23 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <!-- Modal Edit -->
+                                    <div class="modal fade" id="editMatkul{{ $data['id_matkul'] }}" tabindex="-1"
+                                        aria-labelledby="editModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Edit Mata Kuliah</h5>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span>&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @include('mata_kuliah.edit')
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     @endforeach
                                     @endif
                                     </tr>
@@ -112,21 +132,24 @@
         </div>
     </div>
 
-
+    {{-- Modal tambah --}}
+    <div class="modal fade" id="TambahMatkul" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahModalLabel">Form Mata Kuliah</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @include('mata_kuliah.create')
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Script untuk Pencarian -->
     <script>
-        // document.getElementById('searchButton').addEventListener('click', function() {
-        //     const searchText = document.getElementById('searchInput').value.toLowerCase();
-        //     const rows = document.querySelectorAll('tbody tr');
-
-        //     rows.forEach(row => {
-        //         const namaMataKuliah = row.querySelector('td:nth-child(4)'); // Kolom "Nama Mata Kuliah"
-        //         if (namaMataKuliah) {
-        //             const text = namaMataKuliah.textContent.toLowerCase();
-        //             row.style.display = text.includes(searchText) ? '' : 'none';
-        //         }
-        //     });
-        // });
         document.getElementById('searchInput').addEventListener('input', function() {
             filterTable();
         });

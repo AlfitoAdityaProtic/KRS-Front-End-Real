@@ -10,8 +10,12 @@ class MahasiswaController extends Controller
     public function index()
     {
         $response = Http::get('http://localhost:8080/api/mahasiswa');
-        if ($response->successful()){
+
+        $responseProdi = Http::get('http://localhost:8080/api/prodi');
+
+        if ($response->successful() && $responseProdi->successful()){
             $datas = $response->json();
+            $datas['data_prodi'] = $responseProdi->json()['data_prodi'];
             
             return view('mahasiswa.index', compact('datas'));
         }

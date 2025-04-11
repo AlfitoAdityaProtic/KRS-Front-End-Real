@@ -26,14 +26,10 @@
                     </div>
                     <div class="card-body">
 
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TambahProdi"><i
-                                class="fas fa-plus"></i>
+                        <button type="button" class="btn btn-outline-primary shadow" data-toggle="modal"
+                            data-target="#TambahProdi"><i class="fas fa-plus"></i>
                             Tambah Prodi
                         </button>
-
-                        {{-- <a href="prodi/create" class="btn btn-outline-primary mb-3 shadow"><i class="fas fa-plus"></i>
-                            Tambah
-                            Prodi</a> --}}
                         <a href="{{ url('/export-prodi-pdf') }}"
                             class="btn btn-outline-warning mb-3 float-right mr-4 shadow"><i
                                 class="fas fa-download mr-2"></i>PDF</a>
@@ -41,14 +37,14 @@
                             class="btn btn-outline-secondary mb-3 float-right mr-4 shadow"><i
                                 class="fas fa-file-download mr-2"></i>Excel</a>
                         @if (session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert"
                                 style="background: rgba(40, 167, 69, 0.2); border: 1px solid rgba(40, 167, 69, 0.5); color: #155724;">
                                 {{ session('success') }}
                             </div>
                         @endif
 
                         @if (session('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert"
                                 style="background: rgba(220, 53, 69, 0.2); border: 1px solid rgba(220, 53, 69, 0.5); color: #721c24;">
                                 {{ session('error') }}
                             </div>
@@ -60,7 +56,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>ID Prodi</th>
-                                        <th>Nama Prodi</th>
+                                        <th>Nama Program Studi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -80,16 +76,11 @@
                                                 <td>{{ $data['nama_prodi'] }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-1">
-                                                        {{-- <a href="{{ route('prodi.edit', $data['id_prodi']) }}"
-                                                            class="btn btn-outline-success btn-sm shadow">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </a> --}}
-
                                                         <button type="button" class="btn btn-outline-success btn-sm shadow"
                                                             data-toggle="modal"
                                                             data-target="#editProdi{{ $data['id_prodi'] }}"><i
                                                                 class="fas fa-edit"></i>
-                                                            Edit Prodi
+                                                            Edit
                                                         </button>
 
                                                         <form action="{{ route('prodi.destroy', $data['id_prodi']) }}"
@@ -138,7 +129,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tambahModalLabel">Tambah Program Studi</h5>
+                    <h5 class="modal-title" id="tambahModalLabel">Form Program Studi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -146,33 +137,12 @@
                 <div class="modal-body">
                     @include('program_studi.create')
                 </div>
-                {{-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn shadow"
-                        style="border: 2px solid #28a745; color: #28a745; background-color: transparent;"
-                        onmouseover="this.style.backgroundColor='#218838'; this.style.color='white';"
-                        onmouseout="this.style.backgroundColor='transparent'; this.style.color='#218838';">
-                        <i class="fas fa-save"></i> Simpan
-                    </button>
-                </div> --}}
             </div>
         </div>
     </div>
 
     <!-- Script untuk Pencarian -->
     <script>
-        // document.getElementById('searchInput').addEventListener('input', function() {
-        //     const searchText = this.value.toLowerCase();
-        //     const rows = document.querySelectorAll('#produkTable tbody tr');
-
-        //     rows.forEach(row => {
-        //         const namaProdi = row.querySelector('td:nth-child(3)');
-        //         if (namaProdi) {
-        //             const text = namaProdi.textContent.toLowerCase();
-        //             row.style.display = text.includes(searchText) ? '' : 'none';
-        //         }
-        //     });
-        // });
         document.getElementById('searchInput').addEventListener('input', function() {
             filterTable();
         });

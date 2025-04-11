@@ -34,14 +34,14 @@
                                 class="fas fa-file-download mr-2"></i> Excel</a>
 
                         @if (session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert"
                                 style="background: rgba(40, 167, 69, 0.2); border: 1px solid rgba(40, 167, 69, 0.5); color: #155724;">
                                 {{ session('success') }}
                             </div>
                         @endif
 
                         @if (session('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert"
                                 style="background: rgba(220, 53, 69, 0.2); border: 1px solid rgba(220, 53, 69, 0.5); color: #721c24;">
                                 {{ session('error') }}
                             </div>

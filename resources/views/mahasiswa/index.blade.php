@@ -24,23 +24,26 @@
                         </div>
                     </div>
                     <div class="card-body mt-10" style="background: #f8f9fa; padding: 20px;">
-                        <a href="mahasiswa/create" class="btn btn-outline-primary mb-3 shadow"><i class="fas fa-plus"></i> Tambah
-                            Mahasiswa
-                        </a>
-                        <a href="{{ url('/export-mahasiswa-pdf') }}" class="btn btn-outline-warning mb-3 float-right mr-3 shadow"><i
+                        <button type="button" class="btn btn-outline-primary shadow" data-toggle="modal"
+                            data-target="#TambahMahasiswa"><i class="fas fa-plus"></i>
+                            Tambah Mahasiswa
+                        </button>
+                        <a href="{{ url('/export-mahasiswa-pdf') }}"
+                            class="btn btn-outline-warning mb-3 float-right mr-3 shadow"><i
                                 class="fas fa-download mr-2"></i>PDF</a>
-                        <a href="{{ url('/export-mahasiswa') }}" class="btn btn-outline-secondary mb-3 float-right mr-3 shadow"><i
+                        <a href="{{ url('/export-mahasiswa') }}"
+                            class="btn btn-outline-secondary mb-3 float-right mr-3 shadow"><i
                                 class="fas fa-file-download mr-2"></i>Excel</a>
 
                         @if (session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert"
                                 style="background: rgba(40, 167, 69, 0.2); border: 1px solid rgba(40, 167, 69, 0.5); color: #155724;">
                                 {{ session('success') }}
                             </div>
                         @endif
 
                         @if (session('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert"
                                 style="background: rgba(220, 53, 69, 0.2); border: 1px solid rgba(220, 53, 69, 0.5); color: #721c24;">
                                 {{ session('error') }}
                             </div>
@@ -77,22 +80,42 @@
                                                 <td>{{ $data['nama_prodi'] }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-1">
-                                                        <a href="{{ route('mahasiswa.edit', $data['NPM']) }}"
-                                                            class="btn btn-outline-success btn-sm shadow">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </a>
+                                                        <button type="button" class="btn btn-outline-success btn-sm shadow"
+                                                            data-toggle="modal"
+                                                            data-target="#editMahasiswa{{ $data['NPM'] }}"><i
+                                                                class="fas fa-edit"></i>
+                                                            Edit
+                                                        </button>
 
                                                         <form action="{{ route('mahasiswa.destroy', $data['NPM']) }}"
                                                             method="POST" class="ml-2">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-outline-danger btn-sm shadow">
+                                                            <button type="submit"
+                                                                class="btn btn-outline-danger btn-sm shadow">
                                                                 <i class="fas fa-trash"></i> Delete
                                                             </button>
                                                         </form>
                                                     </div>
                                                 </td>
                                             </tr>
+                                            <!-- Modal Edit -->
+                                            <div class="modal fade" id="editMahasiswa{{ $data['NPM'] }}" tabindex="-1"
+                                                aria-labelledby="editModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Edit Data Mahasiswa</h5>
+                                                            <button type="button" class="close" data-dismiss="modal">
+                                                                <span>&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            @include('mahasiswa.edit')
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                     @endif
                                 </tbody>
@@ -104,18 +127,23 @@
         </div>
     </div>
 
-
+    {{-- Modal tambah --}}
+    <div class="modal fade" id="TambahMahasiswa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahModalLabel">Form Mahasiswa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @include('mahasiswa.create')
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
-        // document.getElementById('searchButton').addEventListener('click', function() {
-        //     const searchText = document.getElementById('searchInput').value.toLowerCase();
-        //     const rows = document.querySelectorAll('tbody tr');
-
-        //     rows.forEach(row => {
-        //         const namaMahasiswa = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-        //         row.style.display = namaMahasiswa.includes(searchText) ? '' : 'none';
-        //     });
-        // });
-
         document.getElementById('searchInput').addEventListener('input', function() {
             filterTable();
         });
